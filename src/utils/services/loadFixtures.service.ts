@@ -1,4 +1,4 @@
-import { Collection, Connection, IDatabaseDriver, MikroORM } from '@mikro-orm/core';
+import { Connection, IDatabaseDriver, MikroORM } from '@mikro-orm/core';
 import { PublisherType } from 'contracts/enums/publisherType.enum';
 import { Author } from 'entities/author.entity';
 import { Book } from 'entities/book.entity';

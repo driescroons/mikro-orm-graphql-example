@@ -67,6 +67,7 @@ export default class Application {
         })),
       );
 
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       this.host.use((error: Error, req: express.Request, res: express.Response, next: express.NextFunction): void => {
         console.error('📌 Something went wrong', error);
         res.status(400).send(error);
