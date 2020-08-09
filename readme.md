@@ -10,6 +10,8 @@ A MikroORM boilerplate for GraphQL made with Typescript using TypeGraphQL
 - [Typescript](https://www.typescriptlang.org/)
 - [Mocha](https://mochajs.org/)
 
+I've also created a [package](https://github.com/driescroons/graphql-fields-to-relations) (`graphql-fields-to-relations`) that converts the input fields to a list of relation strings. These strings can be passed directly to MikroOrm, in order to load the requested relations.
+
 ___
 
 ## ✨ Instalation
