@@ -44,7 +44,7 @@ export default class Application {
     this.host = express();
 
     if (process.env.NODE_ENV !== 'production') {
-      this.host.get('/', expressPlayground({ endpoint: '/graphql' }));
+      this.host.get('/graphql', expressPlayground({ endpoint: '/graphql' }));
     }
 
     this.host.use(

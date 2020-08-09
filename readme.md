@@ -35,7 +35,7 @@ ___
 
 ### Running
 
-Once the server starts, you can access the GraphQL API on [localhost:8080/graphql](http://localhost:8080/graphql) and you can find the playground on on [localhost:8080](http://localhost:8080).
+Once the server starts, you can access the GraphQL API on [localhost:8080/graphql](http://localhost:8080/graphql).
 
 I've included 4 options to run this application:
 
