@@ -47,11 +47,7 @@ export default class Application {
       this.host.get('/graphql', expressPlayground({ endpoint: '/graphql' }));
     }
 
-    this.host.use(
-      cors({
-        allowedHeaders: ['x-auth'],
-      }),
-    );
+    this.host.use(cors());
 
     try {
       const schema: GraphQLSchema = await buildSchema({
