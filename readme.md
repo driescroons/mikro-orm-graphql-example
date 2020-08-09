@@ -26,8 +26,9 @@ POSTGRES_DB=mikro-orm-graphql-data
 NODE_DEV=false
 ```
 
-4. Run via `yarn start` or `yarn dev`
-5. GraphQL API is running on  [localhost:8080/graphql](http://localhost:8080/graphql)
+4. Load fixtures `yarn loadFixtures`
+5. Run via `yarn start` or `yarn dev`
+6. GraphQL API is running on  [localhost:8080/graphql](http://localhost:8080/graphql)
 
 ___
 

@@ -20,16 +20,13 @@ describe('Sample tests', async () => {
     request = supertest(application.host);
   });
 
-  beforeEach(async () => {
-    await clearDatabase(application.orm);
-    await loadFixtures(application.orm);
-  });
-
   after(async () => {
     application.server.close();
   });
 
-  it('should clear database and load fixtures', () => {
+  it('should clear database and load fixtures', async () => {
+    await clearDatabase(application.orm);
+    await loadFixtures(application.orm);
     console.log('🚀 Database cleared, fixtures loaded');
   });
 });
