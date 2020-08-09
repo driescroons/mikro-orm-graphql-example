@@ -77,5 +77,8 @@
     "configPaths": [
       "./src/orm.config.ts"
     ]
+  },
+  "engines": {
+    "node": ">=14.0.0"
   }
 }
