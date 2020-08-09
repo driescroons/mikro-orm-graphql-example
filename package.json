@@ -42,6 +42,7 @@
     "faker": "^4.1.0",
     "gen-env-types": "^1.0.3",
     "graphql": "^15.3.0",
+    "graphql-fields-to-relations": "^1.0.0",
     "graphql-playground-middleware-express": "^1.7.18",
     "husky": "^4.2.5",
     "mocha": "^8.1.1",

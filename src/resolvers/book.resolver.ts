@@ -3,15 +3,15 @@ import { Author } from 'entities/author.entity';
 import { Book } from 'entities/book.entity';
 import { Publisher } from 'entities/publisher.entity';
 import { GraphQLResolveInfo } from 'graphql';
+import fieldsToRelations from 'graphql-fields-to-relations';
 import { Arg, Ctx, Info, Mutation, Query, Resolver } from 'type-graphql';
-import { getRelationsFromInfo } from 'utils/helpers/getRelationsFromInfo.helper';
 import { MyContext } from 'utils/interfaces/context.interface';
 
 @Resolver(() => Book)
 export class BookResolver {
   @Query(() => [Book])
   public async getBooks(@Ctx() ctx: MyContext, @Info() info: GraphQLResolveInfo): Promise<Book[]> {
-    const relationPaths = getRelationsFromInfo(info);
+    const relationPaths = fieldsToRelations(info);
     return ctx.em.getRepository(Book).findAll(relationPaths);
   }
 
@@ -21,7 +21,7 @@ export class BookResolver {
     @Ctx() ctx: MyContext,
     @Info() info: GraphQLResolveInfo,
   ): Promise<Book | null> {
-    const relationPaths = getRelationsFromInfo(info);
+    const relationPaths = fieldsToRelations(info);
     return ctx.em.getRepository(Book).findOne({ id }, relationPaths);
   }
 
@@ -36,12 +36,15 @@ export class BookResolver {
     const book = new Book(input);
     book.author = await ctx.em
       .getRepository(Author)
-      .findOneOrFail({ id: authorId }, getRelationsFromInfo(info, 'author'));
+      .findOneOrFail({ id: authorId }, fieldsToRelations(info, { root: 'author' }));
 
     if (publisherId) {
-      book.publisher = await ctx.em
-        .getRepository(Publisher)
-        .findOneOrFail({ id: publisherId }, getRelationsFromInfo(info, 'publisher'));
+      book.publisher = await ctx.em.getRepository(Publisher).findOneOrFail(
+        { id: publisherId },
+        fieldsToRelations(info, {
+          root: 'publisher',
+        }),
+      );
     }
     await ctx.em.persist(book).flush();
     return book;
@@ -54,7 +57,7 @@ export class BookResolver {
     @Ctx() ctx: MyContext,
     @Info() info: GraphQLResolveInfo,
   ): Promise<Book> {
-    const relationPaths = getRelationsFromInfo(info);
+    const relationPaths = fieldsToRelations(info);
     const book = await ctx.em.getRepository(Book).findOneOrFail({ id }, relationPaths);
     book.assign(input);
     await ctx.em.persist(book).flush();

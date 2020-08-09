@@ -1,16 +1,15 @@
 import AuthorValidator from 'contracts/validators/Author.validator';
 import { Author } from 'entities/author.entity';
-import { Publisher } from 'entities/publisher.entity';
 import { GraphQLResolveInfo } from 'graphql';
+import fieldsToRelations from 'graphql-fields-to-relations';
 import { Arg, Ctx, Info, Mutation, Query, Resolver } from 'type-graphql';
-import { getRelationsFromInfo } from 'utils/helpers/getRelationsFromInfo.helper';
 import { MyContext } from 'utils/interfaces/context.interface';
 
 @Resolver(() => Author)
 export class AuthorResolver {
   @Query(() => [Author])
   public async getAuthors(@Ctx() ctx: MyContext, @Info() info: GraphQLResolveInfo): Promise<Author[]> {
-    const relationPaths = getRelationsFromInfo(info);
+    const relationPaths = fieldsToRelations(info);
     return ctx.em.getRepository(Author).findAll(relationPaths);
   }
 
@@ -20,7 +19,7 @@ export class AuthorResolver {
     @Ctx() ctx: MyContext,
     @Info() info: GraphQLResolveInfo,
   ): Promise<Author | null> {
-    const relationPaths = getRelationsFromInfo(info);
+    const relationPaths = fieldsToRelations(info);
     return ctx.em.getRepository(Author).findOne({ id }, relationPaths);
   }
 
@@ -38,7 +37,7 @@ export class AuthorResolver {
     @Ctx() ctx: MyContext,
     @Info() info: GraphQLResolveInfo,
   ): Promise<Author> {
-    const relationPaths = getRelationsFromInfo(info);
+    const relationPaths = fieldsToRelations(info);
     const author = await ctx.em.getRepository(Author).findOneOrFail({ id }, relationPaths);
     author.assign(input);
     await ctx.em.persist(author).flush();
