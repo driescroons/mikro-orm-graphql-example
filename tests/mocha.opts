@@ -1,0 +1,9 @@
+--require ts-node/register/transpile-only 
+--require tsconfig-paths/register
+--require dotenv/config
+--require reflect-metadata
+--recursive
+--exit
+--timeout 99999
+--color
+--forbidPending
