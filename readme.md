@@ -93,6 +93,15 @@ Please start the repository if this helped you!
 
 ___
 
+## ⛑️ Contribution
+
+Want to help contribute to this repository?
+
+- Something's not working? Create an issue!
+- Missing some functionality? Feel free to create a pull request!
+
+___
+
 ## 🚧 Todo
 
 - Better error handling
