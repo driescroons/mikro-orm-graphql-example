@@ -91,7 +91,7 @@ ___
 
 ## ⭐️ Support
 
-Please start the repository if this helped you!
+Please star the repository if this helped you!
 
 ___
 
@@ -99,7 +99,7 @@ ___
 
 Want to help contribute to this repository?
 
-- Something's not working? Create an issue!
+- Something's not working? Got a question? Create an issue!
 - Missing some functionality? Feel free to create a pull request!
 
 ___
