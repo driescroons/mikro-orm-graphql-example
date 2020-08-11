@@ -1787,10 +1787,10 @@ graceful-fs@^4.1.2, graceful-fs@^4.1.6, graceful-fs@^4.2.0:
   resolved "https://registry.yarnpkg.com/graceful-fs/-/graceful-fs-4.2.4.tgz#2256bde14d3632958c465ebc96dc467ca07a29fb"
   integrity sha512-WjKPNJF79dtJAVniUlGGWHYGz2jWxT6VhN/4m1NdkbZ2nOsEF+cI1Edgql5zCRhs/VsQYRvrXctxktVXZUkixw==
 
-graphql-fields-to-relations@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/graphql-fields-to-relations/-/graphql-fields-to-relations-1.0.0.tgz#ad4eedfb9ca71a1dcb1fce9bad50e885c15c3e35"
-  integrity sha512-UdQcoQgig1eFWipbdLiqO/NZrhH9WrLSa5cAI8pgvgHrDloHn+B2IKqf5zOmJHvyQLSpgSDfJIKDAAd7SV50Ow==
+graphql-fields-to-relations@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/graphql-fields-to-relations/-/graphql-fields-to-relations-1.0.2.tgz#c2156a10b8de4b09941ca7c4760db6b9ea726f87"
+  integrity sha512-+AT7YWHEC86aSAfAlXPLmOPemW8qdbLPI2MFN+e6Pc0BZMf4Je9HHCI8kb8QDNhqC7N3r/iCzI4UPHnxfsj0Cw==
   dependencies:
     graphql "^15.3.0"
     graphql-fields "^2.0.3"
