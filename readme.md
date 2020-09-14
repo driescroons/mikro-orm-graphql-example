@@ -14,7 +14,7 @@ I've also created a [package](https://github.com/driescroons/graphql-fields-to-r
 
 ___
 
-## ✨ Instalation
+## ✨ Installation
 
 1. Install dependencies via `yarn`
 2. Create your docker containers via `docker-compose up -d`
