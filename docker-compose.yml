@@ -1,0 +1,16 @@
+version: "3"
+services:
+  postgres:
+    container_name: mikro-graphql-postgres
+    image: postgres:latest
+    ports:
+      - "5432:5432"
+    volumes:
+      - db_data:/var/lib/postgresql
+    environment:
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_DB=mikro-graphql-data
+
+volumes:
+  db_data: ~

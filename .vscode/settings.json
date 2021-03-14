@@ -1,0 +1,14 @@
+{
+  "editor.formatOnSave": false,
+  "prettier.singleQuote": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+  "mochaExplorer.env": { "NODE_ENV": "test", "NODE_DEV": "true" },
+  "mochaExplorer.files": "tests/**/*.test.ts",
+  "mochaExplorer.logpanel": true,
+  "mochaExplorer.ui": "tdd",
+  "mochaExplorer.optsFile": "tests/mocha.opts",
+  "mochaExplorer.debuggerConfig": "Debug tests",
+  "testExplorer.mergeSuites": true,
+}
