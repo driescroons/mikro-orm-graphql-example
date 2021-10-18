@@ -31,6 +31,7 @@ NODE_DEV=false
 4. Load fixtures `yarn loadFixtures`
 5. Run via `yarn start` or `yarn dev`
 6. GraphQL API is running on  [localhost:8080/graphql](http://localhost:8080/graphql)
+7. ChangeSets are displayed on the console
 
 ___
 
@@ -84,7 +85,7 @@ ___
 ## 📢 Shoutouts
 
 Special thanks to [Leslie Jobse](https://github.com/ljobse) and [Sebastiaan Viaene](https://github.com/sebastiaanviaene) from Panenco.  
-  
+
 At [Panenco](https://github.com/Panenco) we shape, build & grow digital products from the ground up, with the future in mind.
 
 ___

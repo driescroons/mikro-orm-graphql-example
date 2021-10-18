@@ -17,8 +17,8 @@ export class Author extends Base<Author> {
   public email: string;
 
   @Property()
-  public termsAccepted = false;
-
+  public termsAccepted: boolean;
+  
   @Field({ nullable: true })
   @Property({ nullable: true })
   public born?: Date;
