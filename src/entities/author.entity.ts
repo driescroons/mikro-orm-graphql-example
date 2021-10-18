@@ -16,8 +16,8 @@ export class Author extends Base<Author> {
   @Unique()
   public email: string;
 
-  @Property()
-  public termsAccepted: boolean;
+  //@Property()
+  //public termsAccepted: boolean;
   
   @Field({ nullable: true })
   @Property({ nullable: true })
