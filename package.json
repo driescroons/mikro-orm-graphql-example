@@ -15,15 +15,15 @@
         "loadFixtures": "yarn test --grep \"should clear database and load fixtures\"",
         "prepare": "husky install"
     },
-	  "husky": {
-      "hooks": {
-        "pre-commit": "lint-staged"
-      }
+    "husky": {
+        "hooks": {
+            "pre-commit": "lint-staged"
+        }
     },
     "lint-staged": {
-      "*.{js,ts,tsx}": [
-        "eslint --fix"
-      ]
+        "*.{js,ts,tsx}": [
+            "eslint --fix"
+        ]
     },
     "dependencies": {
         "@mikro-orm/core": "5.0.0-rc.2",
@@ -37,9 +37,10 @@
         "express": "^4.17.2",
         "express-async-errors": "^3.1.1",
         "express-graphql": "^0.12.0",
-        "graphql": "^16.3.0",
+        "graphql": "^15.7.2",
         "graphql-fields-to-relations": "^1.0.5",
         "graphql-playground-middleware-express": "^1.7.23",
+        "graphql-subscriptions": "^2.0.0",
         "reflect-metadata": "^0.1.13",
         "type-graphql": "^1.1.1",
         "uuid": "^8.3.2"
@@ -49,7 +50,10 @@
         "@types/chai": "^4.3.0",
         "@types/cors": "^2.8.12",
         "@types/express": "^4.17.13",
+        "@types/express-serve-static-core": "4.17.19",
+        "@types/faker": "^6.6.9",
         "@types/mocha": "^9.1.0",
+        "@types/serve-static": "1.13.9",
         "@types/supertest": "^2.0.11",
         "@types/uuid": "^8.3.4",
         "@typescript-eslint/eslint-plugin": "^5.10.2",
@@ -91,5 +95,8 @@
     },
     "engines": {
         "node": ">=14.0.0"
+    },
+    "resolutions": {
+        "@types/serve-static": "1.13.9"
     }
 }

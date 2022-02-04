@@ -1,5 +1,5 @@
-import { MikroORM } from "@mikro-orm/core"
-import { AllSubscriber } from "subscribers/all.subscriber"
+import { MikroORM } from "@mikro-orm/core";
+import { AllSubscriber } from "subscribers/all.subscriber";
 
 export default {
   subscribers: [new AllSubscriber()],
@@ -12,12 +12,12 @@ export default {
     safe: false, // allow to disable table and column dropping
   },
   tsNode: process.env.NODE_DEV === "true" ? true : false,
-  user: "root",
-  password: "root",
-  dbName: "mikro-orm-graphql-data",
-  host: "localhost",
-  port: 5432,
+  user: process.env.POSTGRES_USER || "root",
+  password: process.env.POSTGRES_PASSWORD || "root",
+  dbName: process.env.POSTGRES_DB || "mikro-orm-graphql-data",
+  host: process.env.POSTGRES_HOST || "localhost",
+  port: process.env.POSTGRES_PORT || 5432,
   entities: ["dist/**/*.entity.js"],
   entitiesTs: ["src/**/*.entity.ts"],
   type: "postgresql",
-} as Parameters<typeof MikroORM.init>[0]
+} as Parameters<typeof MikroORM.init>[0];
