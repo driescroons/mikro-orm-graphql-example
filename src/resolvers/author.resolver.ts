@@ -1,10 +1,9 @@
 import AuthorValidator from "contracts/validators/Author.validator";
 import { Author } from "entities/author.entity";
 import { GraphQLResolveInfo } from "graphql";
-import fieldsToRelations from "graphql-fields-to-relations";
+import ormFindOptions from "strategies/resolveInfoToOrmFindOptions";
 import { Arg, Ctx, Info, Mutation, Query, Resolver } from "type-graphql";
 import { MyContext } from "utils/interfaces/context.interface";
-import { PopulateHint } from "@mikro-orm/core";
 
 @Resolver(() => Author)
 export class AuthorResolver {
@@ -13,11 +12,8 @@ export class AuthorResolver {
     @Ctx() ctx: MyContext,
     @Info() info: GraphQLResolveInfo
   ): Promise<Author[]> {
-    const relationPaths = fieldsToRelations(info);
-    return ctx.em.getRepository(Author).findAll({
-      populate: relationPaths as (keyof Author)[],
-      populateWhere: PopulateHint.INFER,
-    });
+    const findOptions = ormFindOptions(info);
+    return ctx.em.getRepository(Author).findAll(findOptions);
   }
 
   @Query(() => Author, { nullable: true })
@@ -26,14 +22,9 @@ export class AuthorResolver {
     @Ctx() ctx: MyContext,
     @Info() info: GraphQLResolveInfo
   ): Promise<Author | null> {
-    const relationPaths = fieldsToRelations(info);
-    return ctx.em.getRepository(Author).findOne(
-      { id },
-      {
-        populate: relationPaths as (keyof Author)[],
-        populateWhere: PopulateHint.INFER,
-      }
-    );
+    const findOptions = ormFindOptions(info);
+
+    return ctx.em.getRepository(Author).findOne({ id }, findOptions);
   }
 
   @Mutation(() => Author)
@@ -53,14 +44,10 @@ export class AuthorResolver {
     @Ctx() ctx: MyContext,
     @Info() info: GraphQLResolveInfo
   ): Promise<Author> {
-    const relationPaths = fieldsToRelations(info);
-    const author = await ctx.em.getRepository(Author).findOneOrFail(
-      { id },
-      {
-        populate: relationPaths as (keyof Author)[],
-        populateWhere: PopulateHint.INFER,
-      }
-    );
+    const findOptions = ormFindOptions(info);
+    const author = await ctx.em
+      .getRepository(Author)
+      .findOneOrFail({ id }, findOptions);
     author.assign(input);
     await ctx.em.persist(author).flush();
     return author;
