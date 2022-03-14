@@ -1,32 +1,32 @@
-import { Connection, EntityManager, IDatabaseDriver } from '@mikro-orm/core';
-import Application from 'application';
-import { SuperTest, Test } from 'supertest';
-import supertest = require('supertest');
-import { clearDatabase } from 'utils/services/clearDatabase.service';
-import { loadFixtures } from 'utils/services/loadFixtures.service';
+import { Connection, EntityManager, IDatabaseDriver } from "@mikro-orm/core"
+import Application from "application"
+import { SuperTest, Test } from "supertest"
+import supertest = require("supertest")
+import { clearDatabase } from "utils/services/clearDatabase.service"
+import { loadFixtures } from "utils/services/loadFixtures.service"
 
-let request: SuperTest<Test>;
-let application: Application;
-let em: EntityManager<IDatabaseDriver<Connection>>;
+let request: SuperTest<Test>
+let application: Application
+let em: EntityManager<IDatabaseDriver<Connection>>
 
-describe('Sample tests', async () => {
-  before(async () => {
-    application = new Application();
-    await application.connect();
-    await application.init();
+describe("Sample tests", async () => {
+	before(async () => {
+		application = new Application()
+		await application.connect()
+		await application.init()
 
-    em = application.orm.em.fork();
+		em = application.orm.em.fork()
 
-    request = supertest(application.host);
-  });
+		request = supertest(application.app)
+	})
 
-  after(async () => {
-    application.server.close();
-  });
+	after(async () => {
+		application.httpServer.close()
+	})
 
-  it('should clear database and load fixtures', async () => {
-    await clearDatabase(application.orm);
-    await loadFixtures(application.orm);
-    console.log('🚀 Database cleared, fixtures loaded');
-  });
-});
+	it("should clear database and load fixtures", async () => {
+		await clearDatabase(application.orm)
+		await loadFixtures(application.orm)
+		console.log("🚀 Database cleared, fixtures loaded")
+	})
+})
