@@ -12,7 +12,7 @@ A MikroORM boilerplate for GraphQL made with Typescript using TypeGraphQL
 
 I've also created a [package](https://github.com/driescroons/graphql-fields-to-relations) (`graphql-fields-to-relations`) that converts the input fields to a list of relation strings. These strings can be passed directly to MikroOrm, in order to load the requested relations.
 
-___
+---
 
 ## ✨ Installation
 
@@ -30,16 +30,16 @@ NODE_DEV=false
 
 4. Load fixtures `yarn loadFixtures`
 5. Run via `yarn start` or `yarn dev`
-6. GraphQL API is running on  [localhost:8080/graphql](http://localhost:8080/graphql)
+6. GraphQL API is running on [localhost:8080/graphql](http://localhost:4080/graphql)
 7. ChangeSets are displayed on the console
 
-___
+---
 
 ## ⚡️ Usage
 
 ### Running
 
-Once the server starts, you can access the GraphQL API on [localhost:8080/graphql](http://localhost:8080/graphql).
+Once the server starts, you can access the GraphQL API on [localhost:8080/graphql](http://localhost:4080/graphql).
 
 I've included 4 options to run this application:
 
@@ -71,30 +71,30 @@ yarn mikro-orm migration:up
 yarn mikro-orm migration:create
 ```
 
-___
+---
 
 ## 👤 Author
 
 Dries Croons  
 Website: [dries.io](http://dries.io)  
 Github: [driescroons](http://github.com/driescroons)  
-Twitter: [croewens](http://twitter.com/croewens)  
+Twitter: [croewens](http://twitter.com/croewens)
 
-___
+---
 
 ## 📢 Shoutouts
 
-Special thanks to [Leslie Jobse](https://github.com/ljobse) and [Sebastiaan Viaene](https://github.com/sebastiaanviaene) from Panenco.  
+Special thanks to [Leslie Jobse](https://github.com/ljobse) and [Sebastiaan Viaene](https://github.com/sebastiaanviaene) from Panenco.
 
 At [Panenco](https://github.com/Panenco) we shape, build & grow digital products from the ground up, with the future in mind.
 
-___
+---
 
 ## ⭐️ Support
 
 Please star the repository if this helped you!
 
-___
+---
 
 ## ⛑️ Contribution
 
@@ -103,7 +103,7 @@ Want to help contribute to this repository?
 - Something's not working? Got a question? Create an issue!
 - Missing some functionality? Feel free to create a pull request!
 
-___
+---
 
 ## 🚧 Todo
 
