@@ -28,7 +28,7 @@ export const loadFixtures = async (
     const publishers = await Promise.all(
       [...Array(5)].map(async (_, publisherIndex) => {
         const publisher = new Publisher({
-          name: faker.company.companyName(),
+          name: faker.company.name(),
           type: PublisherType.GLOBAL,
         });
 
