@@ -7,12 +7,12 @@
   "main": "src/index.ts",
   "scripts": {
     "build": "tsc",
-    "dev": "cross-env NODE_DEV=true ts-node-dev -r tsconfig-paths/register src/index.ts",
+    "dev": "pnpx cross-env NODE_DEV=true ts-node-dev -r tsconfig-paths/register src/index.ts",
     "gen-env-types": "gen-env-types .env -o src/utils/types/env.d.ts -e .",
-    "start": "yarn build && cross-env NODE_PATH=./dist/src node dist/src/index.js",
+    "start": "pnpm build && pnpx cross-env NODE_PATH=./dist/src node dist/src/index.js",
     "lint": "eslint src/**/*.ts --fix",
-    "test": "cross-env NODE_DEV=true NODE_ENV=test ts-mocha ./tests/**/*.test.ts --package package.json",
-    "loadFixtures": "yarn test --grep \"should clear database and load fixtures\"",
+    "test": "pnpx cross-env NODE_DEV=true NODE_ENV=test ts-mocha ./tests/**/*.test.ts --package package.json",
+    "loadFixtures": "pnpm test --grep \"should clear database and load fixtures\"",
     "prepare": "husky install"
   },
   "husky": {
