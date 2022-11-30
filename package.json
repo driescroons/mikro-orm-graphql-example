@@ -1,5 +1,5 @@
 {
-  "name": "mikro-orm-graphql-example",
+  "name": "mikrorm-typegraphql-example",
   "description": "A MikroORM boilerplate for GraphQL made with Typescript using TypeGraphQL",
   "version": "1.0.0",
   "license": "MIT",
