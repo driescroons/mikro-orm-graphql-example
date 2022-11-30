@@ -5,5 +5,14 @@
   "mochaExplorer.ui": "tdd",
   "mochaExplorer.optsFile": "tests/mocha.opts",
   "mochaExplorer.debuggerConfig": "Debug tests",
-  "testExplorer.mergeSuites": true
+  "testExplorer.mergeSuites": true,
+  "files.exclude": {
+    "**/.git": true,
+    "**/.svn": true,
+    "**/.hg": true,
+    "**/CVS": true,
+    "**/.DS_Store": true,
+    "**/Thumbs.db": true
+  },
+  "hide-files.files": []
 }

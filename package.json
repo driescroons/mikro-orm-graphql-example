@@ -1,100 +1,100 @@
 {
-	"name": "mikro-orm-graphql-example",
-	"description": "A MikroORM boilerplate for GraphQL made with Typescript using TypeGraphQL",
-	"version": "1.0.0",
-	"license": "MIT",
-	"author": "Dries Croons",
-	"main": "src/index.ts",
-	"scripts": {
-		"build": "tsc",
-		"dev": "cross-env NODE_DEV=true ts-node-dev -r tsconfig-paths/register src/index.ts",
-		"gen-env-types": "gen-env-types .env -o src/utils/types/env.d.ts -e .",
-		"start": "yarn build && cross-env NODE_PATH=./dist/src node dist/src/index.js",
-		"lint": "eslint src/**/*.ts --fix",
-		"test": "cross-env NODE_DEV=true NODE_ENV=test ts-mocha ./tests/**/*.test.ts --package package.json",
-		"loadFixtures": "yarn test --grep \"should clear database and load fixtures\"",
-		"prepare": "husky install"
-	},
-	"husky": {
-		"hooks": {
-			"pre-commit": "lint-staged"
-		}
-	},
-	"lint-staged": {
-		"*.{js,ts,tsx}": [
-			"eslint --fix"
-		]
-	},
-	"dependencies": {
-		"@mikro-orm/core": "5.1.3",
-		"@mikro-orm/migrations": "5.1.3",
-		"@mikro-orm/postgresql": "5.1.3",
-		"apollo-server-core": "3.7.0",
-		"apollo-server-express": "3.7.0",
-		"class-validator": "0.13.2",
-		"cors": "2.8.5",
-		"cross-env": "7.0.3",
-		"dotenv": "16.0.1",
-		"express": "4.18.1",
-		"express-async-errors": "3.1.1",
-		"graphql": "15.8.0",
-		"graphql-fields-to-relations": "1.0.5",
-		"graphql-subscriptions": "2.0.0",
-		"reflect-metadata": "0.1.13",
-		"type-graphql": "1.1.1",
-		"uuid": "8.3.2"
-	},
-	"devDependencies": {
-		"@faker-js/faker": "6.3.1",
-		"@mikro-orm/cli": "5.1.3",
-		"@types/chai": "4.3.1",
-		"@types/cors": "2.8.12",
-		"@types/express": "4.17.13",
-		"@types/express-serve-static-core": "4.17.28",
-		"@types/mocha": "9.1.1",
-		"@types/serve-static": "1.13.10",
-		"@types/supertest": "2.0.12",
-		"@types/uuid": "8.3.4",
-		"@typescript-eslint/eslint-plugin": "5.23.0",
-		"@typescript-eslint/parser": "5.23.0",
-		"chai": "4.3.6",
-		"eslint": "8.15.0",
-		"eslint-config-prettier": "8.5.0",
-		"eslint-plugin-prettier": "4.0.0",
-		"gen-env-types": "1.3.4",
-		"husky": "8.0.1",
-		"lint-staged": "12.4.1",
-		"mocha": "10.0.0",
-		"prettier": "2.6.2",
-		"supertest": "6.2.3",
-		"ts-mocha": "10.0.0",
-		"ts-node-dev": "1.1.8",
-		"tsconfig-paths": "4.0.0",
-		"typescript": "4.6.4"
-	},
-	"mocha": {
-		"require": [
-			"ts-node/register/transpile-only",
-			"tsconfig-paths/register",
-			"dotenv/config",
-			"reflect-metadata"
-		],
-		"recursive": true,
-		"exit": true,
-		"timeout": 99999,
-		"forbidPending": true,
-		"color": true
-	},
-	"mikro-orm": {
-		"useTsNode": true,
-		"configPaths": [
-			"./src/orm.config.ts"
-		]
-	},
-	"engines": {
-		"node": ">=14.0.0"
-	},
-	"resolutions": {
-		"@types/serve-static": "1.13.9"
-	}
+  "name": "mikro-orm-graphql-example",
+  "description": "A MikroORM boilerplate for GraphQL made with Typescript using TypeGraphQL",
+  "version": "1.0.0",
+  "license": "MIT",
+  "author": "Dries Croons",
+  "main": "src/index.ts",
+  "scripts": {
+    "build": "tsc",
+    "dev": "cross-env NODE_DEV=true ts-node-dev -r tsconfig-paths/register src/index.ts",
+    "gen-env-types": "gen-env-types .env -o src/utils/types/env.d.ts -e .",
+    "start": "yarn build && cross-env NODE_PATH=./dist/src node dist/src/index.js",
+    "lint": "eslint src/**/*.ts --fix",
+    "test": "cross-env NODE_DEV=true NODE_ENV=test ts-mocha ./tests/**/*.test.ts --package package.json",
+    "loadFixtures": "yarn test --grep \"should clear database and load fixtures\"",
+    "prepare": "husky install"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,ts,tsx}": [
+      "eslint --fix"
+    ]
+  },
+  "dependencies": {
+    "@mikro-orm/core": "5.5.3",
+    "@mikro-orm/migrations": "5.5.3",
+    "@mikro-orm/postgresql": "5.5.3",
+    "apollo-server-core": "3.11.1",
+    "apollo-server-express": "3.11.1",
+    "class-validator": "0.13.2",
+    "cors": "2.8.5",
+    "cross-env": "7.0.3",
+    "dotenv": "16.0.3",
+    "express": "4.18.2",
+    "express-async-errors": "3.1.1",
+    "graphql": "16.6.0",
+    "graphql-subscriptions": "2.0.0",
+    "reflect-metadata": "0.1.13",
+    "type-graphql": "next",
+    "uuid": "9.0.0"
+  },
+  "devDependencies": {
+    "@faker-js/faker": "7.6.0",
+    "@mikro-orm/cli": "5.5.3",
+    "@types/chai": "4.3.4",
+    "@types/cors": "2.8.12",
+    "@types/express": "4.17.14",
+    "@types/express-serve-static-core": "4.17.31",
+    "@types/mocha": "10.0.1",
+    "@types/node": "18.11.9",
+    "@types/serve-static": "1.15.0",
+    "@types/supertest": "2.0.12",
+    "@types/uuid": "9.0.0",
+    "@typescript-eslint/eslint-plugin": "5.45.0",
+    "@typescript-eslint/parser": "5.45.0",
+    "chai": "4.3.7",
+    "eslint": "8.28.0",
+    "eslint-config-prettier": "8.5.0",
+    "eslint-plugin-prettier": "4.2.1",
+    "gen-env-types": "1.3.4",
+    "husky": "8.0.2",
+    "lint-staged": "13.0.4",
+    "mocha": "10.1.0",
+    "prettier": "2.8.0",
+    "supertest": "6.3.1",
+    "ts-mocha": "10.0.0",
+    "ts-node-dev": "2.0.0",
+    "tsconfig-paths": "4.1.0",
+    "typescript": "4.9.3"
+  },
+  "mocha": {
+    "require": [
+      "ts-node/register/transpile-only",
+      "tsconfig-paths/register",
+      "dotenv/config",
+      "reflect-metadata"
+    ],
+    "recursive": true,
+    "exit": true,
+    "timeout": 99999,
+    "forbidPending": true,
+    "color": true
+  },
+  "mikro-orm": {
+    "useTsNode": true,
+    "configPaths": [
+      "./src/orm.config.ts"
+    ]
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "resolutions": {
+    "@types/serve-static": "1.13.9"
+  }
 }
