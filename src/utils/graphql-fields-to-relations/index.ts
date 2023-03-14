@@ -44,6 +44,7 @@ export const fieldsToRelations = (
 				return p[prop];
 		  }, graphqlFields(info, {}, { excludedFields: options.excludeFields }));
 
+	// eslint-disable-next-line no-extra-boolean-cast
 	nested(value, !!options.root ? options.root.split('.').pop() : undefined);
 
 	return paths.map((list: string[]) => list.join('.'));

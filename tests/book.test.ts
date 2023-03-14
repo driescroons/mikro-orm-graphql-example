@@ -1,26 +1,19 @@
 import Application from 'application';
-import { SuperTest, Test } from 'supertest';
+import gql from 'graphql-tag';
+
 import createSimpleUuid from 'utils/helpers/createSimpleUuid.helper';
+import { afterAll, beforeAll, beforeEach, describe, expect, it } from 'vitest';
 
-import { afterAll, afterEach, beforeAll, beforeEach, describe, expect, it, test } from 'vitest';
+import { clearDatabase, loadFixtures, sendTestRequest } from 'testingUtils';
 
-import { Connection, EntityManager, IDatabaseDriver } from '@mikro-orm/core';
-
-import supertest = require('supertest');
-
-let request: SuperTest<Test>;
+// let request: SuperTest<Test>;
 let application: Application;
-let em: EntityManager<IDatabaseDriver<Connection>>;
+// let em: EntityManager<IDatabaseDriver<Connection>>;
 
 describe('Book tests', async () => {
 	beforeAll(async () => {
 		application = new Application();
-		await application.connect();
 		await application.init();
-
-		em = application.orm.em.fork();
-
-		request = supertest(application.app);
 	});
 
 	beforeEach(async () => {
@@ -33,10 +26,8 @@ describe('Book tests', async () => {
 	});
 
 	it('should get books', async () => {
-		const response = await request
-			.post('/graphql')
-			.send({
-				query: `query {
+		const response = await sendTestRequest(
+			gql(`query {
           getBooks {
             id title author {
               id email
@@ -51,18 +42,14 @@ describe('Book tests', async () => {
             }
           }
         }
-        `
-			})
-			.expect(200);
-
+        `)
+		);
 		expect(response.body.data.getBooks).to.be.a('array');
 	});
 
 	it('should get book by id', async () => {
-		const response = await request
-			.post('/graphql')
-			.send({
-				query: `query {
+		const response = await sendTestRequest(
+			gql(`query {
           getBook(id: "${createSimpleUuid(1)}") {
             id title author {
               id email
@@ -77,18 +64,14 @@ describe('Book tests', async () => {
             }
           }
         }
-        `
-			})
-			.expect(200);
-
+        `)
+		);
 		expect(response.body.data.getBook).to.be.a('object');
 	});
 
 	it('should create book', async () => {
-		const response = await request
-			.post('/graphql')
-			.send({
-				query: `mutation {
+		const response = await sendTestRequest(
+			gql(`mutation {
           addBook (
             input: {
               title: "new Book",
@@ -109,18 +92,14 @@ describe('Book tests', async () => {
             }
           }
         }
-        `
-			})
-			.expect(200);
-
+        `)
+		);
 		expect(response.body.data.addBook).to.be.a('object');
 	});
 
 	it('should update book', async () => {
-		const response = await request
-			.post('/graphql')
-			.send({
-				query: `mutation {
+		const response = await sendTestRequest(
+			gql(`mutation {
           updateBook (input: {
             title: "updated book",
           }, id: "${createSimpleUuid(1)}") {
@@ -137,24 +116,18 @@ describe('Book tests', async () => {
             }
           }
         }
-        `
-			})
-			.expect(200);
-
+        `)
+		);
 		expect(response.body.data.updateBook).to.be.a('object');
 	});
 
 	it('should delete book', async () => {
-		const response = await request
-			.post('/graphql')
-			.send({
-				query: `mutation {
+		const response = await sendTestRequest(
+			gql(`mutation {
           deleteBook (id: "${createSimpleUuid(1)}")
         }
-        `
-			})
-			.expect(200);
-
+        `)
+		);
 		expect(response.body.data.deleteBook).to.be.true;
 	});
 });

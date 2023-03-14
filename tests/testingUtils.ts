@@ -118,7 +118,7 @@ export const sendTestRequest = async (
 ): Promise<any> => {
 	const server = cachedServer ?? (await createServer());
 	cachedServer = server;
-	const requestBuilder = request(server).post('/graphql');
+	const requestBuilder = request(server).post('/graphql').expect(200);
 
 	Object.entries(headers).forEach(([key, value]) => {
 		requestBuilder.set(key, value);

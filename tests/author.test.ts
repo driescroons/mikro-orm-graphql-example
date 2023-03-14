@@ -1,25 +1,17 @@
 import Application from 'application';
+import gql from 'graphql-tag';
 import createSimpleUuid from 'utils/helpers/createSimpleUuid.helper';
-
 import { afterEach, beforeAll, beforeEach, describe, expect, it } from 'vitest';
 
-import { Connection, EntityManager, IDatabaseDriver } from '@mikro-orm/core';
+import { clearDatabase, loadFixtures, sendTestRequest } from './testingUtils';
 
-import { sendTestRequest } from './testingUtils';
-
-let request: SuperTest<Test>;
+// let request: SuperTest<Test>;
 let application: Application;
-let em: EntityManager<IDatabaseDriver<Connection>>;
 
 describe('Author tests', async () => {
 	beforeAll(async () => {
 		application = new Application();
-
 		await application.init();
-
-		em = application.orm.em.fork();
-
-		request = supertest(application.app);
 	});
 
 	beforeEach(async () => {
@@ -32,29 +24,26 @@ describe('Author tests', async () => {
 	});
 
 	it('should get all authors', async () => {
-		const response = await request
-			.post('/graphql')
-			.send({
-				query: `query {
-          getAuthors {
-            id name email born
-            books {
-              id title
-            }
-          }
-        }
-        `
-			})
-			.expect(200);
-
+		const response = await sendTestRequest(gql`
+			query {
+				getAuthors {
+					id
+					name
+					email
+					born
+					books {
+						id
+						title
+					}
+				}
+			}
+		`);
 		expect(response.body.data.getAuthors).to.be.a('array');
 	});
 
 	it('should get author by id', async () => {
-		const response = await request
-			.post('/graphql')
-			.send({
-				query: `query {
+		const response = await sendTestRequest(
+			gql(`query {
           getAuthor(id: "${createSimpleUuid(1)}") {
             id name born email
             books {
@@ -64,18 +53,15 @@ describe('Author tests', async () => {
             }
           }
         }
-        `
-			})
-			.expect(200);
+        `)
+		);
 
 		expect(response.body.data.getAuthor).to.be.a('object');
 	});
 
 	it('should create author', async () => {
-		const response = await request
-			.post('/graphql')
-			.send({
-				query: `mutation {
+		const response = await sendTestRequest(
+			gql(`mutation {
           addAuthor (
             input: {
               email: "email@email.com",
@@ -91,18 +77,14 @@ describe('Author tests', async () => {
             }
           }
         }
-        `
-			})
-			.expect(200);
-
+        `)
+		);
 		expect(response.body.data.addAuthor).to.be.a('object');
 	});
 
 	it('should update author', async () => {
-		const response = await request
-			.post('/graphql')
-			.send({
-				query: `mutation {
+		const response = await sendTestRequest(
+			gql(`mutation {
           updateAuthor (input: {
             email: "updated@email.com",
             name: "update name",
@@ -116,24 +98,18 @@ describe('Author tests', async () => {
             }
           }
         }
-        `
-			})
-			.expect(200);
-
+        `)
+		);
 		expect(response.body.data.updateAuthor).to.be.a('object');
 	});
 
 	it('should delete author', async () => {
-		const response = await request
-			.post('/graphql')
-			.send({
-				query: `mutation {
+		const response = await sendTestRequest(
+			gql(`mutation {
           deleteAuthor (id: "${createSimpleUuid(1)}")
         }
-        `
-			})
-			.expect(200);
-
+        `)
+		);
 		expect(response.body.data.deleteAuthor).to.be.true;
 	});
 });

@@ -73,8 +73,9 @@ export default class Application {
 				cors<cors.CorsRequest>(),
 				json(),
 				expressMiddleware(server, {
-					context: async ({ req }) => ({
-						token: req.headers.token,
+					context: async ({ req, res }) => ({
+						req: req,
+						res: res,
 						em: this.orm.em.fork()
 					})
 				})
