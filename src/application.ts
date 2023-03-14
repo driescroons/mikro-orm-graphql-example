@@ -39,8 +39,8 @@ export default class Application {
 	}
 
 	public stop() {
-		this.httpServer.stop();
-		this.app.stop();
+		// this.httpServer.stop();
+		// this.app.stop();
 	}
 
 	// inits the ORM

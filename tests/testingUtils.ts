@@ -10,10 +10,9 @@ const createServer = async () => {
 	return app.httpServer;
 };
 
-export resetDB() {
+export function resetDB() {
 	
 }
-
 
 export const sendTestRequest = async (
 	query: DocumentNode,

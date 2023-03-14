@@ -15,7 +15,7 @@ let em: EntityManager<IDatabaseDriver<Connection>>;
 describe('Author tests', async () => {
 	beforeAll(async () => {
 		application = new Application();
-		await application.connect();
+
 		await application.init();
 
 		em = application.orm.em.fork();

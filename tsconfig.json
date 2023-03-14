@@ -11,7 +11,7 @@
 		"emitDecoratorMetadata": true,
 		"esModuleInterop": true,
 		"baseUrl": ".",
-		"types": ["vitest/global"],
+		"types": ["vitest/globals"],
 		"typeRoots": ["src/utils/types", "node_modules/@types"],
 		"paths": {
 			"*": ["./src/*", "./tests/*"]
