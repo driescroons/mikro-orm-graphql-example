@@ -4,13 +4,22 @@ import { SuperTest, Test } from "supertest";
 import supertest = require("supertest");
 import { clearDatabase } from "utils/services/clearDatabase.service";
 import { loadFixtures } from "utils/services/loadFixtures.service";
+import {
+  describe,
+  expect,
+  test,
+  it,
+  beforeEach,
+  beforeAll,
+  afterAll,
+} from "vitest";
 
 let request: SuperTest<Test>;
 let application: Application;
 let em: EntityManager<IDatabaseDriver<Connection>>;
 
 describe("Sample tests", async () => {
-  before(async () => {
+  beforeAll(async () => {
     application = new Application();
     await application.connect();
     await application.init();
@@ -20,7 +29,7 @@ describe("Sample tests", async () => {
     request = supertest(application.app);
   });
 
-  after(async () => {
+  afterAll(async () => {
     application.httpServer.close();
   });
 

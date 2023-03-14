@@ -11,11 +11,12 @@
     "emitDecoratorMetadata": true,
     "esModuleInterop": true,
     "baseUrl": ".",
+    "types": ["vitest/global"],
     "typeRoots": ["src/utils/types", "node_modules/@types"],
     "paths": {
       "*": ["./src/*", "./tests/*"]
     }
   },
   "exclude": ["node_modules"],
-  "include": ["./src/**/*.ts", "./tests/**/*.ts", "src/migrations/Migration20200809143205.ts.old"]
+  "include": ["./src/**/*.ts", "./tests/**/*.ts"]
 }
