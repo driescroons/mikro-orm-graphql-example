@@ -1,5 +1,6 @@
-import { MikroORM } from '@mikro-orm/core';
 import { AllSubscriber } from 'subscribers/all.subscriber';
+
+import { MikroORM } from '@mikro-orm/core';
 import { SqlHighlighter } from '@mikro-orm/sql-highlighter';
 
 export default {

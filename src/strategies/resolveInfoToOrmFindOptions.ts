@@ -1,6 +1,7 @@
 import { GraphQLResolveInfo } from 'graphql';
-import { PopulateHint } from '@mikro-orm/core';
 import { fieldsToRelations } from 'utils/graphql-fields-to-relations';
+
+import { PopulateHint } from '@mikro-orm/core';
 
 /*
  *  We wrap the fieldsToRelations package with our own function

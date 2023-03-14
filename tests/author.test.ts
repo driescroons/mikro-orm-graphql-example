@@ -1,12 +1,11 @@
+import Application from 'application';
+import createSimpleUuid from 'utils/helpers/createSimpleUuid.helper';
+
+import { afterEach, beforeAll, beforeEach, describe, expect, it } from 'vitest';
+
 import { Connection, EntityManager, IDatabaseDriver } from '@mikro-orm/core';
 
-import createSimpleUuid from 'utils/helpers/createSimpleUuid.helper';
-import { clearDatabase } from 'utils/services/clearDatabase.service';
-import { loadFixtures } from 'utils/services/loadFixtures.service';
-import { describe, expect, it, beforeEach, beforeAll, afterAll, afterEach } from 'vitest';
 import { sendTestRequest } from './testingUtils';
-
-import Application from 'application';
 
 let request: SuperTest<Test>;
 let application: Application;
@@ -32,7 +31,7 @@ describe('Author tests', async () => {
 		application.httpServer.close();
 	});
 
-	it('should get authors', async () => {
+	it('should get all authors', async () => {
 		const response = await request
 			.post('/graphql')
 			.send({

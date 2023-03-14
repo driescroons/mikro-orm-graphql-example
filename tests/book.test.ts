@@ -1,12 +1,12 @@
-import { Connection, EntityManager, IDatabaseDriver } from '@mikro-orm/core';
 import Application from 'application';
-
 import { SuperTest, Test } from 'supertest';
-import supertest = require('supertest');
 import createSimpleUuid from 'utils/helpers/createSimpleUuid.helper';
-import { clearDatabase } from 'utils/services/clearDatabase.service';
-import { loadFixtures } from 'utils/services/loadFixtures.service';
-import { describe, expect, test, it, beforeEach, beforeAll, afterAll, afterEach } from 'vitest';
+
+import { afterAll, afterEach, beforeAll, beforeEach, describe, expect, it, test } from 'vitest';
+
+import { Connection, EntityManager, IDatabaseDriver } from '@mikro-orm/core';
+
+import supertest = require('supertest');
 
 let request: SuperTest<Test>;
 let application: Application;

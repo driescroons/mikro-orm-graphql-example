@@ -1,26 +1,21 @@
-import { ApolloServer } from '@apollo/server';
-import { expressMiddleware } from '@apollo/server/express4';
-import { ApolloServerPluginDrainHttpServer } from '@apollo/server/plugin/drainHttpServer';
-
-import http from 'http';
-import express from 'express';
-import 'express-async-errors';
-
-import { Connection, EntityManager, IDatabaseDriver, MikroORM } from '@mikro-orm/core';
+import { json } from 'body-parser';
 import { PublisherType } from 'contracts/enums/publisherType.enum';
 import cors from 'cors';
-import { json } from 'body-parser';
+import express from 'express';
+import 'express-async-errors';
 import { GraphQLSchema } from 'graphql';
+import http from 'http';
 import type { Server } from 'http';
 import ormConfig from 'orm.config';
 import { AuthorResolver } from 'resolvers/author.resolver';
 import { BookResolver } from 'resolvers/book.resolver';
 import { buildSchema, registerEnumType } from 'type-graphql';
+import { MyContext } from 'utils/interfaces/context.interface';
 
-interface MyContext {
-	token?: string;
-	em?: EntityManager<IDatabaseDriver<Connection>>;
-}
+import { ApolloServer } from '@apollo/server';
+import { expressMiddleware } from '@apollo/server/express4';
+import { ApolloServerPluginDrainHttpServer } from '@apollo/server/plugin/drainHttpServer';
+import { Connection, IDatabaseDriver, MikroORM } from '@mikro-orm/core';
 
 // TODO: create service for this
 registerEnumType(PublisherType, {

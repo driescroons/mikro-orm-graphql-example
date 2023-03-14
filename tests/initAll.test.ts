@@ -1,12 +1,8 @@
 import Application from 'application';
+import { clearDatabase, loadFixtures } from 'testingUtils';
+import { afterAll, beforeAll, describe, it } from 'vitest';
 
-import { clearDatabase } from 'utils/services/clearDatabase.service';
-import { loadFixtures } from 'utils/services/loadFixtures.service';
-import { describe, it, beforeAll, afterAll } from 'vitest';
-
-// let request: SuperTest<Test>;
 let application: Application;
-// let em: EntityManager<IDatabaseDriver<Connection>>;
 
 describe('Sample tests', async () => {
 	beforeAll(async () => {
