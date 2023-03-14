@@ -9,23 +9,26 @@ import { Base } from 'utils/entities/base.entity';
 @ObjectType()
 @Entity()
 export class Book extends Base<Book> {
-  @Field()
-  @Property()
-  public title: string;
+	@Field()
+	@Property()
+	public title: string;
 
-  @Field(() => Author)
-  @ManyToOne(() => Author, { onDelete: 'cascade' })
-  public author: Author;
+	@Field(() => Author)
+	@ManyToOne(() => Author, { onDelete: 'cascade' })
+	public author: Author;
 
-  @Field(() => Publisher, { nullable: true })
-  @ManyToOne(() => Publisher, { cascade: [Cascade.PERSIST, Cascade.REMOVE], nullable: true })
-  public publisher?: Publisher;
+	@Field(() => Publisher, { nullable: true })
+	@ManyToOne(() => Publisher, {
+		cascade: [Cascade.PERSIST, Cascade.REMOVE],
+		nullable: true
+	})
+	public publisher?: Publisher;
 
-  @Field(() => [Tag])
-  @ManyToMany(() => Tag)
-  public tags = new Collection<Tag>(this);
+	@Field(() => [Tag])
+	@ManyToMany(() => Tag)
+	public tags = new Collection<Tag>(this);
 
-  constructor(body: BookValidator) {
-    super(body);
-  }
+	constructor(body: BookValidator) {
+		super(body);
+	}
 }

@@ -7,15 +7,15 @@ import { Base } from 'utils/entities/base.entity';
 @ObjectType()
 @Entity()
 export class Tag extends Base<Tag> {
-  @Field()
-  @Property()
-  public name: string;
+	@Field()
+	@Property()
+	public name: string;
 
-  @Field(() => [Book])
-  @ManyToMany(() => Book, (b: Book) => b.tags)
-  public books = new Collection<Book>(this);
+	@Field(() => [Book])
+	@ManyToMany(() => Book, (b: Book) => b.tags)
+	public books = new Collection<Book>(this);
 
-  constructor(body: TagValidator) {
-    super(body);
-  }
+	constructor(body: TagValidator) {
+		super(body);
+	}
 }

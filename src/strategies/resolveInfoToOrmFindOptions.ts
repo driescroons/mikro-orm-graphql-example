@@ -1,6 +1,6 @@
-import { GraphQLResolveInfo } from "graphql";
-import { PopulateHint } from "@mikro-orm/core";
-import { fieldsToRelations } from "utils/graphql-fields-to-relations";
+import { GraphQLResolveInfo } from 'graphql';
+import { PopulateHint } from '@mikro-orm/core';
+import { fieldsToRelations } from 'utils/graphql-fields-to-relations';
 
 /*
  *  We wrap the fieldsToRelations package with our own function
@@ -10,22 +10,22 @@ import { fieldsToRelations } from "utils/graphql-fields-to-relations";
  *  https://mikro-orm.io/docs/loading-strategies#population-where-condition
  */
 const resolveInfoToOrmFindOptions = (
-  info: GraphQLResolveInfo,
-  options?: {
-    depth?: number;
-    root?: string;
-    excludeFields?: string[];
-  },
-  populationEnum?: PopulateHint
+	info: GraphQLResolveInfo,
+	options?: {
+		depth?: number;
+		root?: string;
+		excludeFields?: string[];
+	},
+	populationEnum?: PopulateHint
 ): unknown => {
-  const relations: string[] = fieldsToRelations(info, options);
+	const relations: string[] = fieldsToRelations(info, options);
 
-  return relations.length > 0
-    ? {
-        populate: relations,
-        populateWhere: populationEnum || PopulateHint.INFER,
-      }
-    : {};
+	return relations.length > 0
+		? {
+				populate: relations,
+				populateWhere: populationEnum || PopulateHint.INFER
+		  }
+		: {};
 };
 
 export default resolveInfoToOrmFindOptions;

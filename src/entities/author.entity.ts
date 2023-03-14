@@ -7,31 +7,31 @@ import { Book } from './book.entity';
 @ObjectType()
 @Entity()
 export class Author extends Base<Author> {
-  @Field()
-  @Property()
-  public name: string;
+	@Field()
+	@Property()
+	public name: string;
 
-  @Field()
-  @Property()
-  @Unique()
-  public email: string;
+	@Field()
+	@Property()
+	@Unique()
+	public email: string;
 
-  //@Property()
-  //public termsAccepted: boolean;
-  
-  @Field({ nullable: true })
-  @Property({ nullable: true })
-  public born?: Date;
+	//@Property()
+	//public termsAccepted: boolean;
 
-  @Field(() => [Book])
-  @OneToMany(() => Book, (b: Book) => b.author, { cascade: [Cascade.ALL] })
-  public books = new Collection<Book>(this);
+	@Field({ nullable: true })
+	@Property({ nullable: true })
+	public born?: Date;
 
-  @Field(() => Book, { nullable: true })
-  @ManyToOne(() => Book, { nullable: true })
-  public favouriteBook?: Book;
+	@Field(() => [Book])
+	@OneToMany(() => Book, (b: Book) => b.author, { cascade: [Cascade.ALL] })
+	public books = new Collection<Book>(this);
 
-  constructor(body: AuthorValidator) {
-    super(body);
-  }
+	@Field(() => Book, { nullable: true })
+	@ManyToOne(() => Book, { nullable: true })
+	public favouriteBook?: Book;
+
+	constructor(body: AuthorValidator) {
+		super(body);
+	}
 }

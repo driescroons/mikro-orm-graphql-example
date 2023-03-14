@@ -1,27 +1,27 @@
 {
-  "version": "0.2.0",
-  "configurations": [
-    {
-      "name": "Debug application",
-      "type": "node",
-      "request": "launch",
-      "cwd": "${workspaceRoot}",
-      "runtimeArgs": ["-r", "ts-node/register", "-r", "tsconfig-paths/register"],
-      "args": ["${workspaceRoot}/src/index.ts"],
-      "env": {
-        "NODE_DEV": true
-      }
-    },
-    {
-      "type": "node",
-      "request": "attach",
-      "name": "Debug tests",
-      "protocol": "inspector",
-      "skipFiles": ["<node_internals>/**"],
-      "stopOnEntry": false,
-      "smartStep": true,
-      "sourceMaps": true,
-      "disableOptimisticBPs": true
-    }
-  ]
+	"version": "0.2.0",
+	"configurations": [
+		{
+			"name": "Debug application",
+			"type": "node",
+			"request": "launch",
+			"cwd": "${workspaceRoot}",
+			"runtimeArgs": ["-r", "ts-node/register", "-r", "tsconfig-paths/register"],
+			"args": ["${workspaceRoot}/src/index.ts"],
+			"env": {
+				"NODE_DEV": true
+			}
+		},
+		{
+			"type": "node",
+			"request": "attach",
+			"name": "Debug tests",
+			"protocol": "inspector",
+			"skipFiles": ["<node_internals>/**"],
+			"stopOnEntry": false,
+			"smartStep": true,
+			"sourceMaps": true,
+			"disableOptimisticBPs": true
+		}
+	]
 }
