@@ -1,5 +1,4 @@
 import { defineConfig } from 'vite';
-import graphql from '@rollup/plugin-graphql';
 
 export default defineConfig({
 	test: {
@@ -8,7 +7,6 @@ export default defineConfig({
 		coverage: {
 			reporter: ['text', 'html']
 		},
-		global: true,
-		plugins: [graphql()]
+		global: true
 	}
 });

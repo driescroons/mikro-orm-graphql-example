@@ -1,5 +1,5 @@
-import { gql } from 'apollo-server-express';
-import { sendTestRequest } from './testUtils';
+import gql from 'graphql-tag';
+import { sendTestRequest } from './testingUtils';
 import { expect, test, it, beforeEach, beforeAll, afterAll } from 'vitest';
 
 it('Example', async () => {

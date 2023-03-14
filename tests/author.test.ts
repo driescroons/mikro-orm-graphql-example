@@ -1,11 +1,10 @@
 import { Connection, EntityManager, IDatabaseDriver } from '@mikro-orm/core';
 
-import { SuperTest, Test } from 'supertest';
-import supertest = require('supertest');
 import createSimpleUuid from 'utils/helpers/createSimpleUuid.helper';
 import { clearDatabase } from 'utils/services/clearDatabase.service';
 import { loadFixtures } from 'utils/services/loadFixtures.service';
-import { describe, expect, test, it, beforeEach, beforeAll, afterAll, afterEach } from 'vitest';
+import { describe, expect, it, beforeEach, beforeAll, afterAll, afterEach } from 'vitest';
+import { sendTestRequest } from './testingUtils';
 
 import Application from 'application';
 
@@ -13,7 +12,7 @@ let request: SuperTest<Test>;
 let application: Application;
 let em: EntityManager<IDatabaseDriver<Connection>>;
 
-it('Author tests', async () => {
+describe('Author tests', async () => {
 	beforeAll(async () => {
 		application = new Application();
 		await application.connect();
