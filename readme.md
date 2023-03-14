@@ -19,7 +19,7 @@ What is the point about this Proof Of Concept?
 
 1. Install dependencies via `pnpm i`
 2. Create your docker containers via `docker-compose up -d`
-3. Review the .env file and ensure it will work in your environment
+3. Review the .env file and ensure it will work in your environment - by default is it configured to connect to the dockerized postgres instance
 4. Load fixtures `pnpm loadFixtures`
 5. Run via `pnpm start` or `pnpm dev`
 6. GraphQL API is started on [localhost:4000/graphql](http://localhost:4000/graphql)
