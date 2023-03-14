@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { GraphQLResolveInfo } from 'graphql';
 
 const options = {};

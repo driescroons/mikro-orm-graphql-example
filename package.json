@@ -44,9 +44,7 @@
 		"@mikro-orm/cli": "5.6.14",
 		"@types/cors": "2.8.13",
 		"@types/express": "4.17.17",
-		"@types/express-serve-static-core": "4.17.33",
 		"@types/node": "18.15.3",
-		"@types/serve-static": "1.15.1",
 		"@types/supertest": "2.0.12",
 		"@types/uuid": "9.0.1",
 		"@typescript-eslint/eslint-plugin": "5.55.0",
@@ -73,8 +71,5 @@
 	},
 	"engines": {
 		"node": ">=14.0.0"
-	},
-	"resolutions": {
-		"@types/serve-static": "1.13.9"
 	}
 }

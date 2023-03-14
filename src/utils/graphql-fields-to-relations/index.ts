@@ -1,4 +1,5 @@
-// https://github.com/bnussman/graphql-fields-to-relations
+// this is https://github.com/bnussman/graphql-fields-to-relations
+// ported to graphql 16
 import { GraphQLResolveInfo } from 'graphql';
 import { graphqlFields } from './fields';
 

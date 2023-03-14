@@ -58,6 +58,7 @@ export default class Application {
 				plugins: [ApolloServerPluginDrainHttpServer({ httpServer: this.httpServer })]
 			});
 			await server.start();
+
 			server.applyMiddleware({ app: this.app });
 			await new Promise<void>((resolve) => this.httpServer.listen({ port: 4000 }, resolve));
 			console.log(`🚀 Server ready at http://localhost:4000${server.graphqlPath}`);

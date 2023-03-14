@@ -1,4 +1,4 @@
-import { EventArgs, EventSubscriber, Subscriber } from '@mikro-orm/core';
+import { EventArgs, EventSubscriber } from '@mikro-orm/core';
 
 export class AllSubscriber implements EventSubscriber {
 	async afterCreate<T>(args: EventArgs<T>): Promise<void> {
