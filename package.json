@@ -12,7 +12,7 @@
     "start": "pnpm build && pnpx cross-env NODE_PATH=./dist/src node dist/src/index.js",
     "lint": "eslint src/**/*.ts --fix",
     "test": "pnpx cross-env NODE_DEV=true NODE_ENV=test ts-mocha ./tests/**/*.test.ts --package package.json",
-    "loadFixtures": "pnpm test --grep \"should clear database and load fixtures\"",
+    "loadFixtures": "pnpx cross-env NODE_DEV=true NODE_ENV=test ts-mocha ./tests/init.test.ts --package package.json",
     "prepare": "husky install"
   },
   "husky": {

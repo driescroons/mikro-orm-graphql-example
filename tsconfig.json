@@ -17,5 +17,5 @@
     }
   },
   "exclude": ["node_modules"],
-  "include": ["./src/**/*.ts", "./tests/**/*.ts"]
+  "include": ["./src/**/*.ts", "./tests/**/*.ts", "src/migrations/Migration20200809143205.ts.old"]
 }
