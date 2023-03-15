@@ -1,23 +1,26 @@
 {
 	"compilerOptions": {
 		"module": "commonjs",
-		"target": "ES2020",
-		"lib": ["ES2020"],
+		"target": "ESNext",
+		"lib": ["ESNext"],
 		"sourceMap": true,
 		"outDir": "dist",
 		"moduleResolution": "node",
 		"removeComments": true,
-		"sourceRoot": "src",
+
 		"experimentalDecorators": true,
 		"emitDecoratorMetadata": true,
 		"esModuleInterop": true,
 		"baseUrl": ".",
-		"types": ["vitest/globals"],
 		"typeRoots": ["src/utils/types", "node_modules/@types"],
+		"sourceRoot": "src",
 		"paths": {
-			"*": ["./src/*", "./tests/*"]
+			"*": ["./src/*"]
 		}
 	},
-	"exclude": ["**/node_modules"],
-	"include": ["./src/**/*.ts", "./tests/**/*.ts"]
+	"exclude": ["**/node_modules/**/*"],
+	"include": ["./src/**/*.ts", "./tests/**/*.ts"],
+	"ts-node": {
+		"require": ["tsconfig-paths/register"]
+	}
 }

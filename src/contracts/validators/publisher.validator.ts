@@ -1,5 +1,5 @@
 import { IsEnum, IsString } from 'class-validator';
-import { PublisherType } from 'contracts/enums/publisherType.enum';
+import { PublisherType } from '../enums/publisherType.enum';
 import { Field, InputType } from 'type-graphql';
 
 @InputType()

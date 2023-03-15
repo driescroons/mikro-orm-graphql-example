@@ -1,6 +1,6 @@
-import AuthorValidator from 'contracts/validators/author.validator';
+import AuthorValidator from '../contracts/validators/author.validator';
 import { Field, ObjectType } from 'type-graphql';
-import { Base } from 'utils/entities/base.entity';
+import { Base } from './base.entity';
 
 import { Cascade, Collection, Entity, ManyToOne, OneToMany, Property, Unique } from '@mikro-orm/core';
 

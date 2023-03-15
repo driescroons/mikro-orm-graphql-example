@@ -1,9 +1,9 @@
-import AuthorValidator from 'contracts/validators/Author.validator';
-import { Author } from 'entities/author.entity';
+import AuthorValidator from '../contracts/validators/Author.validator';
+import { Author } from '../entities/author.entity';
 import { GraphQLResolveInfo } from 'graphql';
-import ormFindOptions from 'strategies/resolveInfoToOrmFindOptions';
+import ormFindOptions from '../strategies/resolveInfoToOrmFindOptions';
 import { Arg, Ctx, Info, Mutation, Query, Resolver } from 'type-graphql';
-import { MyContext } from 'utils/interfaces/context.interface';
+import { MyContext } from '../utils/interfaces/context.interface';
 
 @Resolver(() => Author)
 export class AuthorResolver {

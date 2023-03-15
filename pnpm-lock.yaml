@@ -8,7 +8,7 @@ specifiers:
   '@mikro-orm/migrations': 5.6.14
   '@mikro-orm/postgresql': 5.6.14
   '@mikro-orm/sql-highlighter': 1.0.1
-  '@trivago/prettier-plugin-sort-imports': ^4.1.1
+  '@trivago/prettier-plugin-sort-imports': 4.1.1
   '@types/cors': 2.8.13
   '@types/express': 4.17.17
   '@types/node': 18.15.3
@@ -35,6 +35,7 @@ specifiers:
   reflect-metadata: 0.1.13
   supertest: 6.3.3
   ts-node-dev: 2.0.0
+  tsconfig-paths: 4.1.2
   type-graphql: next
   typescript: 4.9.5
   uuid: 9.0.0
@@ -80,6 +81,7 @@ devDependencies:
   prettier: 2.8.4
   supertest: 6.3.3
   ts-node-dev: 2.0.0_cbfmry4sbbh4vatmdrsmatfg5a
+  tsconfig-paths: 4.1.2
   typescript: 4.9.5
   vite: 4.1.4_@types+node@18.15.3
   vitest: 0.29.2_@vitest+ui@0.29.2
@@ -277,7 +279,7 @@ packages:
     resolution: {integrity: sha512-oLcVCTeIFadUoArDTwpluncplrYBmTCCZZgXCbgNGvOBBiSDDK3eWO4b/+eOTli5tKv1lg+a5/NAXg+nTcei1w==}
     engines: {node: '>=6.9.0'}
     dependencies:
-      '@babel/types': 7.17.0
+      '@babel/types': 7.21.3
       jsesc: 2.5.2
       source-map: 0.5.7
     dev: true
@@ -333,7 +335,7 @@ packages:
     engines: {node: '>=6.0.0'}
     hasBin: true
     dependencies:
-      '@babel/types': 7.17.0
+      '@babel/types': 7.21.3
     dev: true
 
   /@babel/template/7.20.7:
@@ -356,7 +358,7 @@ packages:
       '@babel/helper-hoist-variables': 7.18.6
       '@babel/helper-split-export-declaration': 7.18.6
       '@babel/parser': 7.21.3
-      '@babel/types': 7.17.0
+      '@babel/types': 7.21.3
       debug: 4.3.4
       globals: 11.12.0
     transitivePeerDependencies:

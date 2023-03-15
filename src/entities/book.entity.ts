@@ -1,9 +1,9 @@
-import BookValidator from 'contracts/validators/Book.validator';
-import { Author } from 'entities/author.entity';
-import { Publisher } from 'entities/publisher.entity';
-import { Tag } from 'entities/tag.entity';
+import BookValidator from '../contracts/validators/Book.validator';
+import { Author } from './author.entity';
+import { Publisher } from './publisher.entity';
+import { Tag } from './tag.entity';
 import { Field, ObjectType } from 'type-graphql';
-import { Base } from 'utils/entities/base.entity';
+import { Base } from './base.entity';
 
 import { Cascade, Collection, Entity, ManyToMany, ManyToOne, Property } from '@mikro-orm/core';
 

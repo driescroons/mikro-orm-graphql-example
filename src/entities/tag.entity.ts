@@ -1,7 +1,7 @@
-import TagValidator from 'contracts/validators/tag.validator';
-import { Book } from 'entities/book.entity';
+import TagValidator from '../contracts/validators/tag.validator';
+import { Book } from './book.entity';
 import { Field, ObjectType } from 'type-graphql';
-import { Base } from 'utils/entities/base.entity';
+import { Base } from './base.entity';
 
 import { Collection, Entity, ManyToMany, Property } from '@mikro-orm/core';
 

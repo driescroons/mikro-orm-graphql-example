@@ -7,7 +7,7 @@
 	"main": "src/index.ts",
 	"scripts": {
 		"build": "tsc",
-		"dev": "pnpx cross-env NODE_DEV=true ts-node-dev -r tsconfig-paths/register src/index.ts",
+		"dev": "pnpx cross-env NODE_DEV=true ts-node-dev src/index.ts",
 		"gen-env-types": "gen-env-types .env -o src/utils/types/env.d.ts -e .",
 		"start": "pnpm build && pnpx cross-env NODE_PATH=./dist/src node dist/src/index.js",
 		"lint": "pnpm run lint-check-format && pnpm run lint-es",
@@ -58,6 +58,7 @@
 		"prettier": "2.8.4",
 		"supertest": "6.3.3",
 		"ts-node-dev": "2.0.0",
+		"tsconfig-paths": "4.1.2",
 		"typescript": "4.9.5",
 		"@vitest/ui": "latest",
 		"vite": "latest",

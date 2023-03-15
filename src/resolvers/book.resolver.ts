@@ -1,11 +1,11 @@
-import BookValidator from 'contracts/validators/Book.validator';
-import { Author } from 'entities/author.entity';
-import { Book } from 'entities/book.entity';
-import { Publisher } from 'entities/publisher.entity';
+import BookValidator from '../contracts/validators/Book.validator';
+import { Author } from '../entities/author.entity';
+import { Book } from '../entities/book.entity';
+import { Publisher } from '../entities/publisher.entity';
 import { GraphQLResolveInfo } from 'graphql';
-import ormFindOptions from 'strategies/resolveInfoToOrmFindOptions';
+import ormFindOptions from '../strategies/resolveInfoToOrmFindOptions';
 import { Arg, Ctx, Info, Mutation, Query, Resolver } from 'type-graphql';
-import { MyContext } from 'utils/interfaces/context.interface';
+import { MyContext } from '../utils/interfaces/context.interface';
 
 @Resolver(() => Book)
 export class BookResolver {
