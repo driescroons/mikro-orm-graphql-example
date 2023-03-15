@@ -1,16 +1,15 @@
-import { afterAll, beforeAll, describe, it } from 'vitest';
 import Application from '../src/application';
 import { clearDatabase, loadFixtures } from './testingUtils';
 
 let application: Application;
 
 describe('Sample tests', async () => {
-	beforeAll(async () => {
+	before(async () => {
 		application = new Application();
 		await application.init();
 	});
 
-	afterAll(async () => {
+	after(async () => {
 		application.stop();
 	});
 

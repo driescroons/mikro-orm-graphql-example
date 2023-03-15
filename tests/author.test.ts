@@ -1,5 +1,5 @@
+import { expect } from 'chai';
 import gql from 'graphql-tag';
-import { afterEach, beforeAll, beforeEach, describe, expect, it } from 'vitest';
 import Application from '../src/application';
 import createSimpleUuid from '../src/utils/helpers/createSimpleUuid.helper';
 import { clearDatabase, loadFixtures, sendTestRequest } from './testingUtils';
@@ -8,9 +8,13 @@ import { clearDatabase, loadFixtures, sendTestRequest } from './testingUtils';
 let application: Application;
 
 describe('Author tests', async () => {
-	beforeAll(async () => {
+	before(async () => {
 		application = new Application();
 		await application.init();
+	});
+
+	after(async () => {
+		application.httpServer.close();
 	});
 
 	beforeEach(async () => {

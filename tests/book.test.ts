@@ -1,5 +1,5 @@
 import gql from 'graphql-tag';
-import { afterAll, beforeAll, beforeEach, describe, expect, it } from 'vitest';
+import { expect } from 'chai';
 import Application from '../src/application';
 import createSimpleUuid from '../src/utils/helpers/createSimpleUuid.helper';
 import { clearDatabase, loadFixtures, sendTestRequest } from './testingUtils';
@@ -9,18 +9,17 @@ let application: Application;
 // let em: EntityManager<IDatabaseDriver<Connection>>;
 
 describe('Book tests', async () => {
-	beforeAll(async () => {
+	before(async () => {
 		application = new Application();
 		await application.init();
+	});
+	after(async () => {
+		application.httpServer.close();
 	});
 
 	beforeEach(async () => {
 		await clearDatabase(application.orm);
 		await loadFixtures(application.orm);
-	});
-
-	afterAll(async () => {
-		application.httpServer.close();
 	});
 
 	it('should get books', async () => {

@@ -2,15 +2,13 @@
 
 What is the point about this Proof Of Concept?
 
-1.
-
 ## 📦 Packages
 
-- [MikroORM](https://mikro-orm.io/) Probably the best ORM for Typescript
 - [GraphQL](https://graphql.org/) A fantastic middleware tech
-- [TypeGraphQL](https://typegraphql.com/) (2.0 beta) A code to graphql generator
-- [Typescript](https://www.typescriptlang.org/) A decent somehow typed language
-- [Mocha](https://mochajs.org/) An old testing framework
+- [TypeGraphQL](https://typegraphql.com/) A code to graphql schema generator
+- [MikroORM](https://mikro-orm.io/) Probably the best ORM for Typescript (support identity maps and automatic transactions)
+- [Typescript](https://www.typescriptlang.org/) A somehow decent typed language
+- [Mocha](https://mochajs.org/) An old testing framework (I tried vitest but it doesn't support reflect-metadata)
 - graphql-fields-to-relations - a graphql/databse relationship optimizer
 
 ---
@@ -18,12 +16,11 @@ What is the point about this Proof Of Concept?
 ## ✨ Installation
 
 1. Install dependencies via `pnpm i`
-2. Create your docker containers via `docker-compose up -d`
-3. Review the .env file and ensure it will work in your environment - by default is it configured to connect to the dockerized postgres instance
-4. Load fixtures `pnpm loadFixtures`
-5. Run via `pnpm start` or `pnpm dev`
-6. GraphQL API is started on [localhost:4000/graphql](http://localhost:4000/graphql)
-7. Mutation change sets are displayed on the console
+2. Started the dockerized Postgres database via `docker-compose up -d`
+3. Load fixtures `pnpm loadFixtures`, this will create the supporting schema in the database
+4. Start the graphQL server via `pnpm start` or `pnpm dev`
+5. Open this link in a browser to [localhost:4000/graphql](http://localhost:4000/graphql)
+6. Any mutation of state generates a message on the console
 
 ---
 
@@ -73,16 +70,3 @@ Github: [driescroons](http://github.com/driescroons)
 Twitter: [croewens](http://twitter.com/croewens)
 
 ---
-
-## ⛑️ Contribution
-
-Want to help contribute to this repository?
-
-- Something's not working? Got a question? Create an issue!
-- Missing some functionality? Feel free to create a pull request!
-
----
-
-## 🚧 Todo
-
-- Better error handling
