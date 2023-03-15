@@ -3,7 +3,7 @@ import { Field, InputType } from 'type-graphql';
 
 @InputType()
 class BookValidator {
-	@Field()
+	@Field(() => String)
 	@IsString()
 	public title: string;
 }

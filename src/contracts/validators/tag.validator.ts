@@ -3,7 +3,7 @@ import { Field, InputType } from 'type-graphql';
 
 @InputType()
 class TagValidator {
-	@Field()
+	@Field(() => String)
 	@IsString()
 	public name: string;
 }

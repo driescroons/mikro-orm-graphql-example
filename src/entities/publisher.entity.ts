@@ -9,7 +9,7 @@ import { Collection, Entity, Enum, OneToMany, Property } from '@mikro-orm/core';
 @ObjectType()
 @Entity()
 export class Publisher extends Base<Publisher> {
-	@Field()
+	@Field(() => String)
 	@Property()
 	public name: string;
 

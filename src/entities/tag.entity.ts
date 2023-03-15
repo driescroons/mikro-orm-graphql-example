@@ -8,7 +8,7 @@ import { Collection, Entity, ManyToMany, Property } from '@mikro-orm/core';
 @ObjectType()
 @Entity()
 export class Tag extends Base<Tag> {
-	@Field()
+	@Field(() => String)
 	@Property()
 	public name: string;
 

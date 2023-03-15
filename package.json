@@ -14,11 +14,11 @@
 		"lint-es": "eslint --cache --ignore-path .gitignore **/*.{ts,json,md} ",
 		"lint-check-format": "prettier --ignore-path .gitignore --check --cache --plugin-search-dir=. .",
 		"format": "prettier --ignore-path .gitignore --write --cache --plugin-search-dir=. .",
-		"test": "pnpx vitest run",
-		"test:ui": "pnpx vitest --ui",
-		"test:coverage": "pnpx vitest --coverage",
-		"test:watch": "pnpx vitest watch",
-		"test:loadFixtures": "pnpx vitest initAll"
+		"test": "vitest run",
+		"test:ui": "vitest --ui",
+		"test:coverage": "vitest --coverage",
+		"test:watch": "vitest watch",
+		"test:loadFixtures": "vitest initAll"
 	},
 	"dependencies": {
 		"@apollo/server": "4.5.0",

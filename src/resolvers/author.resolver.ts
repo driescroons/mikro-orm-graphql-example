@@ -15,7 +15,7 @@ export class AuthorResolver {
 
 	@Query(() => Author, { nullable: true })
 	public async getAuthor(
-		@Arg('id') id: string,
+		@Arg('id', () => String) id: string,
 		@Ctx() ctx: MyContext,
 		@Info() info: GraphQLResolveInfo
 	): Promise<Author | null> {
@@ -25,7 +25,10 @@ export class AuthorResolver {
 	}
 
 	@Mutation(() => Author)
-	public async addAuthor(@Arg('input') input: AuthorValidator, @Ctx() ctx: MyContext): Promise<Author> {
+	public async addAuthor(
+		@Arg('input', () => AuthorValidator) input: AuthorValidator,
+		@Ctx() ctx: MyContext
+	): Promise<Author> {
 		const author = new Author(input);
 		await ctx.em.persist(author).flush();
 		return author;
@@ -33,7 +36,7 @@ export class AuthorResolver {
 
 	@Mutation(() => Author)
 	public async updateAuthor(
-		@Arg('input') input: AuthorValidator,
+		@Arg('input', () => AuthorValidator) input: AuthorValidator,
 		@Arg('id') id: string,
 		@Ctx() ctx: MyContext,
 		@Info() info: GraphQLResolveInfo

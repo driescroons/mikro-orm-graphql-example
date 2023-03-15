@@ -10,7 +10,7 @@ import { Cascade, Collection, Entity, ManyToMany, ManyToOne, Property } from '@m
 @ObjectType()
 @Entity()
 export class Book extends Base<Book> {
-	@Field()
+	@Field(() => String)
 	@Property()
 	public title: string;
 

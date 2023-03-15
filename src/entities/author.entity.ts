@@ -8,11 +8,11 @@ import { Cascade, Collection, Entity, ManyToOne, OneToMany, Property, Unique } f
 @ObjectType()
 @Entity()
 export class Author extends Base<Author> {
-	@Field()
+	@Field(() => String)
 	@Property()
 	public name: string;
 
-	@Field()
+	@Field(() => String)
 	@Property()
 	@Unique()
 	public email: string;
@@ -20,7 +20,7 @@ export class Author extends Base<Author> {
 	//@Property()
 	//public termsAccepted: boolean;
 
-	@Field({ nullable: true })
+	@Field(() => Date, { nullable: true })
 	@Property({ nullable: true })
 	public born?: Date;
 

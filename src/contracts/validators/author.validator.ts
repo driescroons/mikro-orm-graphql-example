@@ -3,11 +3,11 @@ import { Field, InputType } from 'type-graphql';
 
 @InputType()
 class AuthorValidator {
-	@Field()
+	@Field(() => String)
 	@IsString()
 	public name: string;
 
-	@Field()
+	@Field(() => String)
 	@IsEmail()
 	public email: string;
 

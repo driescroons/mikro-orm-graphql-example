@@ -40,6 +40,7 @@ export const fieldsToRelations = (
 	const value = !options.root
 		? graphqlFields(info, {}, { excludedFields: options.excludeFields })
 		: options.root.split('.').reduce(function (p, prop) {
+				// eslint-disable-next-line
 				return p[prop];
 		  }, graphqlFields(info, {}, { excludedFields: options.excludeFields }));
 

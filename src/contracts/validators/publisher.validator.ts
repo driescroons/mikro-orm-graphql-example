@@ -4,7 +4,7 @@ import { PublisherType } from '../enums/publisherType.enum';
 
 @InputType()
 export class PublisherValidator {
-	@Field()
+	@Field(() => String)
 	@IsString()
 	public name: string;
 

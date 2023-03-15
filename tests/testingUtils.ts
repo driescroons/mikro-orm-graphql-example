@@ -1,6 +1,6 @@
-import Application from '../src/application';
 import { DocumentNode, print } from 'graphql';
 import request from 'supertest';
+import Application from '../src/application';
 import { PublisherType } from '../src/contracts/enums/publisherType.enum';
 import { Author } from '../src/entities/author.entity';
 import { Book } from '../src/entities/book.entity';

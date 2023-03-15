@@ -1,6 +1,6 @@
+import { afterAll, beforeAll, describe, it } from 'vitest';
 import Application from '../src/application';
 import { clearDatabase, loadFixtures } from './testingUtils';
-import { afterAll, beforeAll, describe, it } from 'vitest';
 
 let application: Application;
 
