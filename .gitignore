@@ -1,4 +1,4 @@
+.eslintcache
 node_modules
-.env
 dist
-yarn-error.log
+*.log

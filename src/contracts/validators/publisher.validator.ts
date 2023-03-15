@@ -1,14 +1,14 @@
 import { IsEnum, IsString } from 'class-validator';
-import { PublisherType } from 'contracts/enums/publisherType.enum';
 import { Field, InputType } from 'type-graphql';
+import { PublisherType } from '../enums/publisherType.enum';
 
 @InputType()
 export class PublisherValidator {
-  @Field()
-  @IsString()
-  public name: string;
+	@Field(() => String)
+	@IsString()
+	public name: string;
 
-  @Field(() => PublisherType)
-  @IsEnum(PublisherType)
-  public type: PublisherType;
+	@Field(() => PublisherType)
+	@IsEnum(PublisherType)
+	public type: PublisherType;
 }

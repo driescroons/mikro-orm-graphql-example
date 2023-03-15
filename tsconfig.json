@@ -1,21 +1,28 @@
 {
-  "compilerOptions": {
-    "module": "commonjs",
-    "target": "ES2020",
-    "lib": ["ES2020"],
-    "sourceMap": true,
-    "outDir": "./dist",
-    "moduleResolution": "node",
-    "removeComments": true,
-    "experimentalDecorators": true,
-    "emitDecoratorMetadata": true,
-    "esModuleInterop": true,
-    "baseUrl": ".",
-    "typeRoots": ["src/utils/types", "node_modules/@types"],
-    "paths": {
-      "*": ["./src/*", "./tests/*"]
-    }
-  },
-  "exclude": ["node_modules"],
-  "include": ["./src/**/*.ts", "./tests/**/*.ts"]
+	"compilerOptions": {
+		"module": "commonjs",
+		"target": "ESNext",
+		"lib": ["ESNext"],
+		"allowJs": true,
+		"skipLibCheck": true,
+		"sourceMap": true,
+		"outDir": "dist",
+		"moduleResolution": "node",
+		"removeComments": true,
+		"strict": false,
+		"strictPropertyInitialization": false,
+		"noEmit": true,
+		"resolveJsonModule": true,
+		"isolatedModules": false,
+		"incremental": true,
+		"experimentalDecorators": true,
+		"emitDecoratorMetadata": true,
+		"esModuleInterop": true
+	},
+	"include": ["**/*.ts"],
+	"exclude": ["node_modules"],
+
+	"ts-node": {
+		"require": ["tsconfig-paths/register"]
+	}
 }

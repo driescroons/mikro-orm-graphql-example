@@ -1,44 +1,34 @@
 # mikro-orm-graphql-example
 
-A MikroORM boilerplate for GraphQL made with Typescript using TypeGraphQL
+What is the point about this Proof Of Concept?
 
 ## 📦 Packages
 
-- [MikroORM](https://mikro-orm.io/)
-- [GraphQL](https://graphql.org/)
-- [TypeGraphQL](https://typegraphql.com/)
-- [Typescript](https://www.typescriptlang.org/)
-- [Mocha](https://mochajs.org/)
+- [GraphQL](https://graphql.org/) A fantastic middleware tech
+- [TypeGraphQL](https://typegraphql.com/) A code to graphql schema generator
+- [MikroORM](https://mikro-orm.io/) Probably the best ORM for Typescript (support identity maps and automatic transactions)
+- [Typescript](https://www.typescriptlang.org/) A somehow decent typed language
+- [Mocha](https://mochajs.org/) An old testing framework (I tried vitest but it doesn't support reflect-metadata)
+- graphql-fields-to-relations - a graphql/databse relationship optimizer
 
-I've also created a [package](https://github.com/driescroons/graphql-fields-to-relations) (`graphql-fields-to-relations`) that converts the input fields to a list of relation strings. These strings can be passed directly to MikroOrm, in order to load the requested relations.
-
-___
+---
 
 ## ✨ Installation
 
-1. Install dependencies via `yarn`
-2. Create your docker containers via `docker-compose up -d`
-3. create .env file based on .env.example
+1. Install dependencies via `pnpm i`
+2. Started the dockerized Postgres database via `docker-compose up -d`
+3. Load fixtures `pnpm loadFixtures`, this will create the supporting schema in the database
+4. Start the graphQL server via `pnpm start` or `pnpm dev`
+5. Open this link in a browser to [localhost:4000/graphql](http://localhost:4000/graphql)
+6. Any mutation of state generates a message on the console
 
-```
-PORT=8080
-POSTGRES_USER=root
-POSTGRES_PASSWORD=root
-POSTGRES_DB=mikro-orm-graphql-data
-NODE_DEV=false
-```
-
-4. Load fixtures `yarn loadFixtures`
-5. Run via `yarn start` or `yarn dev`
-6. GraphQL API is running on  [localhost:8080/graphql](http://localhost:8080/graphql)
-
-___
+---
 
 ## ⚡️ Usage
 
 ### Running
 
-Once the server starts, you can access the GraphQL API on [localhost:8080/graphql](http://localhost:8080/graphql).
+Once the server starts, you can access the GraphQL API on [localhost:4000/graphql](http://localhost:4000/graphql).
 
 I've included 4 options to run this application:
 
@@ -65,45 +55,18 @@ I've added the launch script for VSCode in the repository. You can start the app
 After developing a feature, run the following commands to create a migration from the previous migration schema state:
 
 ```
-yarn mikro-orm schema:drop --run
-yarn mikro-orm migration:up
-yarn mikro-orm migration:create
+pnpm mikro-orm schema:drop --run
+pnpm mikro-orm migration:up
+pnpm mikro-orm migration:create
 ```
 
-___
+---
 
 ## 👤 Author
 
 Dries Croons  
 Website: [dries.io](http://dries.io)  
 Github: [driescroons](http://github.com/driescroons)  
-Twitter: [croewens](http://twitter.com/croewens)  
+Twitter: [croewens](http://twitter.com/croewens)
 
-___
-
-## 📢 Shoutouts
-
-Special thanks to [Leslie Jobse](https://github.com/ljobse) and [Sebastiaan Viaene](https://github.com/sebastiaanviaene) from Panenco.  
-  
-At [Panenco](https://github.com/Panenco) we shape, build & grow digital products from the ground up, with the future in mind.
-
-___
-
-## ⭐️ Support
-
-Please star the repository if this helped you!
-
-___
-
-## ⛑️ Contribution
-
-Want to help contribute to this repository?
-
-- Something's not working? Got a question? Create an issue!
-- Missing some functionality? Feel free to create a pull request!
-
-___
-
-## 🚧 Todo
-
-- Better error handling
+---

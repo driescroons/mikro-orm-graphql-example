@@ -3,9 +3,9 @@ import { Field, InputType } from 'type-graphql';
 
 @InputType()
 class BookValidator {
-  @Field()
-  @IsString()
-  public title: string;
+	@Field(() => String)
+	@IsString()
+	public title: string;
 }
 
 export default BookValidator;

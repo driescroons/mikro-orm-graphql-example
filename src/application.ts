@@ -1,84 +1,118 @@
+import { json } from 'body-parser';
+import cors from 'cors';
 import express from 'express';
 import 'express-async-errors';
-
-import { Connection, IDatabaseDriver, MikroORM } from '@mikro-orm/core';
-import bodyParser from 'body-parser';
-import { PublisherType } from 'contracts/enums/publisherType.enum';
-import cors from 'cors';
-import { graphqlHTTP } from 'express-graphql';
 import { GraphQLSchema } from 'graphql';
-import expressPlayground from 'graphql-playground-middleware-express';
-import { Server } from 'http';
-import ormConfig from 'orm.config';
-import { AuthorResolver } from 'resolvers/author.resolver';
-import { BookResolver } from 'resolvers/book.resolver';
+import type { Server } from 'http';
+import http from 'http';
 import { buildSchema, registerEnumType } from 'type-graphql';
-import { MyContext } from 'utils/interfaces/context.interface';
+import { PublisherType } from './contracts/enums/publisherType.enum';
+import ormConfig from './orm.config';
+import { AuthorResolver } from './resolvers/author.resolver';
+import { BookResolver } from './resolvers/book.resolver';
+import { MyContext } from './utils/interfaces/context.interface';
+
+import { ApolloServer } from '@apollo/server';
+import { expressMiddleware } from '@apollo/server/express4';
+import { ApolloServerPluginDrainHttpServer } from '@apollo/server/plugin/drainHttpServer';
+import { Connection, IDatabaseDriver, MikroORM } from '@mikro-orm/core';
 
 // TODO: create service for this
 registerEnumType(PublisherType, {
-  name: 'PublisherType',
-  description: 'Type of the publisher',
+	name: 'PublisherType',
+	description: 'Type of the publisher'
 });
 
 export default class Application {
-  public orm: MikroORM<IDatabaseDriver<Connection>>;
-  public host: express.Application;
-  public server: Server;
+	public orm: MikroORM<IDatabaseDriver<Connection>>;
+	public app: express.Application;
+	public httpServer: Server;
 
-  public connect = async (): Promise<void> => {
-    try {
-      this.orm = await MikroORM.init(ormConfig);
-      const migrator = this.orm.getMigrator();
-      const migrations = await migrator.getPendingMigrations();
-      if (migrations && migrations.length > 0) {
-        await migrator.up();
-      }
-    } catch (error) {
-      console.error('📌 Could not connect to the database', error);
-      throw Error(error);
-    }
-  };
+	public async init() {
+		await this.initDB();
+		await this.initGQL();
+	}
 
-  public init = async (): Promise<void> => {
-    this.host = express();
+	public stop() {
+		// this.httpServer.stop();
+		// this.app.stop();
+	}
 
-    if (process.env.NODE_ENV !== 'production') {
-      this.host.get('/graphql', expressPlayground({ endpoint: '/graphql' }));
-    }
+	// inits the ORM
+	public initDB = async (): Promise<void> => {
+		try {
+			this.orm = await MikroORM.init(ormConfig);
+			const migrator = this.orm.getMigrator();
+			const migrations = await migrator.getPendingMigrations();
+			if (migrations && migrations.length > 0) {
+				await migrator.up();
+			}
+		} catch (error) {
+			console.error('📌 Could not connect to the database', error);
+			throw Error(error);
+		}
+	};
 
-    this.host.use(cors());
+	// inits and starts the server
+	public initGQL = async () => {
+		this.app = express();
+		this.httpServer = http.createServer(this.app);
+		try {
+			const schema: GraphQLSchema = await buildSchema({
+				resolvers: [BookResolver, AuthorResolver],
+				dateScalarMode: 'isoDate'
+			});
 
-    try {
-      const schema: GraphQLSchema = await buildSchema({
-        resolvers: [BookResolver, AuthorResolver],
-        dateScalarMode: 'isoDate',
-      });
+			const server = new ApolloServer<MyContext>({
+				schema,
+				plugins: [ApolloServerPluginDrainHttpServer({ httpServer: this.httpServer })]
+			});
+			await server.start();
+			this.app.use(
+				'/graphql',
+				cors<cors.CorsRequest>(),
+				json(),
+				expressMiddleware(server, {
+					context: async ({ req, res }) => ({
+						req: req,
+						res: res,
+						em: this.orm.em.fork()
+					})
+				})
+			);
 
-      this.host.post(
-        '/graphql',
-        bodyParser.json(),
-        graphqlHTTP((req, res) => ({
-          schema,
-          context: { req, res, em: this.orm.em.fork() } as MyContext,
-          customFormatErrorFn: (error) => {
-            throw error;
-          },
-        })),
-      );
+			await new Promise<void>((resolve) => this.httpServer.listen({ port: 4000 }, resolve));
+			console.log('🚀 Server ready at http://localhost:4000/graphql');
+		} catch (error) {
+			console.error('📌 Could not start server', error);
+		}
+	};
 
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      this.host.use((error: Error, req: express.Request, res: express.Response, next: express.NextFunction): void => {
-        console.error('📌 Something went wrong', error);
-        res.status(400).send(error);
-      });
+	// public init = async (): Promise<void> => {
+	// 	this.app = express();
+	// 	this.httpServer = http.createServer(this.app);
+	// 	this.app.use(cors());
 
-      const port = process.env.PORT || 4000;
-      this.server = this.host.listen(port, () => {
-        console.log(`🚀 http://localhost:${port}/graphql`);
-      });
-    } catch (error) {
-      console.error('📌 Could not start server', error);
-    }
-  };
+	// 	try {
+	// 		const schema: GraphQLSchema = await buildSchema({
+	// 			resolvers: [BookResolver, AuthorResolver],
+	// 			dateScalarMode: 'isoDate'
+	// 		});
+
+	// 		const server = new ApolloServer({
+	// 			schema,
+	// 			context: () => {
+	// 				return { em: this.orm.em.fork() };
+	// 			},
+	// 			plugins: [ApolloServerPluginDrainHttpServer({ httpServer: this.httpServer })]
+	// 		});
+	// 		await server.start();
+
+	// 		server.applyMiddleware({ app: this.app });
+	// 		await new Promise<void>((resolve) => this.httpServer.listen({ port: 4000 }, resolve));
+	// 		console.log(`🚀 Server ready at http://localhost:4000${server.graphqlPath}`);
+	// 	} catch (error) {
+	// 		console.error('📌 Could not start server', error);
+	// 	}
+	// };
 }

@@ -3,18 +3,18 @@ import { Field, InputType } from 'type-graphql';
 
 @InputType()
 class AuthorValidator {
-  @Field()
-  @IsString()
-  public name: string;
+	@Field(() => String)
+	@IsString()
+	public name: string;
 
-  @Field()
-  @IsEmail()
-  public email: string;
+	@Field(() => String)
+	@IsEmail()
+	public email: string;
 
-  @Field({ nullable: true })
-  @IsDate()
-  @IsOptional()
-  public born?: Date;
+	@Field({ nullable: true })
+	@IsDate()
+	@IsOptional()
+	public born?: Date;
 }
 
 export default AuthorValidator;

@@ -1,37 +1,38 @@
-import { Cascade, Collection, Entity, ManyToOne, OneToMany, Property, Unique } from '@mikro-orm/core';
-import AuthorValidator from 'contracts/validators/author.validator';
 import { Field, ObjectType } from 'type-graphql';
-import { Base } from 'utils/entities/base.entity';
+import AuthorValidator from '../contracts/validators/author.validator';
+import { Base } from './base.entity';
 import { Book } from './book.entity';
+
+import { Cascade, Collection, Entity, ManyToOne, OneToMany, Property, Unique } from '@mikro-orm/core';
 
 @ObjectType()
 @Entity()
 export class Author extends Base<Author> {
-  @Field()
-  @Property()
-  public name: string;
+	@Field(() => String)
+	@Property()
+	public name: string;
 
-  @Field()
-  @Property()
-  @Unique()
-  public email: string;
+	@Field(() => String)
+	@Property()
+	@Unique()
+	public email: string;
 
-  @Property()
-  public termsAccepted = false;
+	//@Property()
+	//public termsAccepted: boolean;
 
-  @Field({ nullable: true })
-  @Property({ nullable: true })
-  public born?: Date;
+	@Field(() => Date, { nullable: true })
+	@Property({ nullable: true })
+	public born?: Date;
 
-  @Field(() => [Book])
-  @OneToMany(() => Book, (b: Book) => b.author, { cascade: [Cascade.ALL] })
-  public books = new Collection<Book>(this);
+	@Field(() => [Book])
+	@OneToMany(() => Book, (b: Book) => b.author, { cascade: [Cascade.ALL] })
+	public books = new Collection<Book>(this);
 
-  @Field(() => Book, { nullable: true })
-  @ManyToOne(() => Book, { nullable: true })
-  public favouriteBook?: Book;
+	@Field(() => Book, { nullable: true })
+	@ManyToOne(() => Book, { nullable: true })
+	public favouriteBook?: Book;
 
-  constructor(body: AuthorValidator) {
-    super(body);
-  }
+	constructor(body: AuthorValidator) {
+		super(body);
+	}
 }
