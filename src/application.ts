@@ -1,16 +1,16 @@
 import { json } from 'body-parser';
-import { PublisherType } from './contracts/enums/publisherType.enum';
 import cors from 'cors';
 import express from 'express';
 import 'express-async-errors';
 import { GraphQLSchema } from 'graphql';
-import http from 'http';
 import type { Server } from 'http';
+import http from 'http';
+import { buildSchema, registerEnumType } from 'type-graphql';
+import { MyContext } from './utils/interfaces/context.interface';
+import { PublisherType } from './contracts/enums/publisherType.enum';
 import ormConfig from './orm.config';
 import { AuthorResolver } from './resolvers/author.resolver';
 import { BookResolver } from './resolvers/book.resolver';
-import { buildSchema, registerEnumType } from 'type-graphql';
-import { MyContext } from 'utils/interfaces/context.interface';
 
 import { ApolloServer } from '@apollo/server';
 import { expressMiddleware } from '@apollo/server/express4';

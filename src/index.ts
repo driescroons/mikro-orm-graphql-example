@@ -1,6 +1,5 @@
 import 'dotenv/config';
 import 'reflect-metadata';
-
 import Application from './application';
 
 (async () => {

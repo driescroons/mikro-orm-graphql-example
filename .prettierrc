@@ -2,9 +2,5 @@
 	"useTabs": true,
 	"singleQuote": true,
 	"trailingComma": "none",
-	"printWidth": 120,
-	"importOrderParserPlugins": ["typescript", "decorators-legacy"],
-	"importOrder": ["^@(.*)/(.*)$", "^[./]"],
-	"importOrderSeparation": true,
-	"importOrderSortSpecifiers": true
+	"printWidth": 120
 }

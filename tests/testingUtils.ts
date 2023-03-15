@@ -1,11 +1,11 @@
 import Application from 'application';
+import { DocumentNode, print } from 'graphql';
+import request from 'supertest';
 import { PublisherType } from '../src/contracts/enums/publisherType.enum';
 import { Author } from '../src/entities/author.entity';
 import { Book } from '../src/entities/book.entity';
 import { Publisher } from '../src/entities/publisher.entity';
 import { Tag } from '../src/entities/tag.entity';
-import { DocumentNode, print } from 'graphql';
-import request from 'supertest';
 import createSimpleUuid from '../src/utils/helpers/createSimpleUuid.helper';
 
 import { faker } from '@faker-js/faker';

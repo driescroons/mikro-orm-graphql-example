@@ -1,8 +1,8 @@
+import { Field, ObjectType } from 'type-graphql';
 import { PublisherType } from '../contracts/enums/publisherType.enum';
 import { PublisherValidator } from '../contracts/validators/publisher.validator';
-import { Book } from './book.entity';
-import { Field, ObjectType } from 'type-graphql';
 import { Base } from './base.entity';
+import { Book } from './book.entity';
 
 import { Collection, Entity, Enum, OneToMany, Property } from '@mikro-orm/core';
 

@@ -1,6 +1,5 @@
 import gql from 'graphql-tag';
-import { afterAll, beforeAll, beforeEach, expect, it, test } from 'vitest';
-
+import { expect, it } from 'vitest';
 import { sendTestRequest } from './testingUtils';
 
 it('Example', async () => {

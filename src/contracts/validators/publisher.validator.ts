@@ -1,6 +1,6 @@
 import { IsEnum, IsString } from 'class-validator';
-import { PublisherType } from '../enums/publisherType.enum';
 import { Field, InputType } from 'type-graphql';
+import { PublisherType } from '../enums/publisherType.enum';
 
 @InputType()
 export class PublisherValidator {
