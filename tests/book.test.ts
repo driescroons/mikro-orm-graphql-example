@@ -1,7 +1,7 @@
-import Application from 'application';
+import Application from '../src/application';
 import gql from 'graphql-tag';
-import { clearDatabase, loadFixtures, sendTestRequest } from 'testingUtils';
-import createSimpleUuid from 'utils/helpers/createSimpleUuid.helper';
+import { clearDatabase, loadFixtures, sendTestRequest } from './testingUtils';
+import createSimpleUuid from '../src/utils/helpers/createSimpleUuid.helper';
 import { afterAll, beforeAll, beforeEach, describe, expect, it } from 'vitest';
 
 // let request: SuperTest<Test>;

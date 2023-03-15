@@ -1,5 +1,5 @@
-import Application from 'application';
-import { clearDatabase, loadFixtures } from 'testingUtils';
+import Application from '../src/application';
+import { clearDatabase, loadFixtures } from './testingUtils';
 import { afterAll, beforeAll, describe, it } from 'vitest';
 
 let application: Application;

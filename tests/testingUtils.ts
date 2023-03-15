@@ -1,4 +1,4 @@
-import Application from 'application';
+import Application from '../src/application';
 import { DocumentNode, print } from 'graphql';
 import request from 'supertest';
 import { PublisherType } from '../src/contracts/enums/publisherType.enum';

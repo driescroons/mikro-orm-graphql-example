@@ -1,6 +1,6 @@
-import Application from 'application';
+import Application from '../src/application';
 import gql from 'graphql-tag';
-import createSimpleUuid from 'utils/helpers/createSimpleUuid.helper';
+import createSimpleUuid from '../src/utils/helpers/createSimpleUuid.helper';
 import { afterEach, beforeAll, beforeEach, describe, expect, it } from 'vitest';
 import { clearDatabase, loadFixtures, sendTestRequest } from './testingUtils';
 
