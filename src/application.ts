@@ -6,11 +6,11 @@ import { GraphQLSchema } from 'graphql';
 import type { Server } from 'http';
 import http from 'http';
 import { buildSchema, registerEnumType } from 'type-graphql';
-import { MyContext } from './utils/interfaces/context.interface';
 import { PublisherType } from './contracts/enums/publisherType.enum';
 import ormConfig from './orm.config';
 import { AuthorResolver } from './resolvers/author.resolver';
 import { BookResolver } from './resolvers/book.resolver';
+import { MyContext } from './utils/interfaces/context.interface';
 
 import { ApolloServer } from '@apollo/server';
 import { expressMiddleware } from '@apollo/server/express4';

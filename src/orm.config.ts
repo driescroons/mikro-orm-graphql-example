@@ -1,6 +1,6 @@
-import { AllSubscriber } from './subscribers/all.subscriber';
 import { MikroORM } from '@mikro-orm/core';
 import { SqlHighlighter } from '@mikro-orm/sql-highlighter';
+import { AllSubscriber } from './subscribers/all.subscriber';
 
 export default {
 	subscribers: [new AllSubscriber()],
