@@ -106,7 +106,7 @@ export function resetDB() {
 	//
 }
 
-export const sendTestRequest = async (
+export const sendLocalQuery = async (
 	query: DocumentNode,
 	{
 		variables = {},

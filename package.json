@@ -14,7 +14,7 @@
 		"lint-es": "eslint --cache --ignore-path .gitignore **/*.{ts,json,md} ",
 		"lint-check-format": "prettier --ignore-path .gitignore --check --cache --plugin-search-dir=. .",
 		"format": "prettier --ignore-path .gitignore --write --cache --plugin-search-dir=. .",
-		"test": "pnpx cross-env NODE_DEV=true NODE_ENV=test ts-mocha ./tests/**/*.test.ts --package package.json",
+		"test": "pnpx cross-env NODE_DEV=true NODE_ENV=test ./node_modules/.bin/ts-mocha ./tests/**/*.test.ts --package package.json",
 		"test:loadFixtures": "vitest initAll"
 	},
 	"dependencies": {

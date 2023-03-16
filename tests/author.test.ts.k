@@ -2,7 +2,7 @@ import { expect } from 'chai';
 import gql from 'graphql-tag';
 import Application from '../src/application';
 import createSimpleUuid from '../src/utils/helpers/createSimpleUuid.helper';
-import { clearDatabase, loadFixtures, sendTestRequest } from './testingUtils';
+import { clearDatabase, loadFixtures, sendLocalQuery } from './testingUtils';
 
 // let request: SuperTest<Test>;
 let application: Application;
@@ -14,7 +14,7 @@ describe('Author tests', async () => {
 	});
 
 	after(async () => {
-		application.httpServer.close();
+		application.stop();
 	});
 
 	beforeEach(async () => {
@@ -27,7 +27,7 @@ describe('Author tests', async () => {
 	});
 
 	it('should get all authors', async () => {
-		const response = await sendTestRequest(gql`
+		const response = await sendLocalQuery(gql`
 			query {
 				getAuthors {
 					id
@@ -45,7 +45,7 @@ describe('Author tests', async () => {
 	});
 
 	it('should get author by id', async () => {
-		const response = await sendTestRequest(
+		const response = await sendLocalQuery(
 			gql(`query {
           getAuthor(id: "${createSimpleUuid(1)}") {
             id name born email
@@ -63,7 +63,7 @@ describe('Author tests', async () => {
 	});
 
 	it('should create author', async () => {
-		const response = await sendTestRequest(
+		const response = await sendLocalQuery(
 			gql(`mutation {
           addAuthor (
             input: {
@@ -86,7 +86,7 @@ describe('Author tests', async () => {
 	});
 
 	it('should update author', async () => {
-		const response = await sendTestRequest(
+		const response = await sendLocalQuery(
 			gql(`mutation {
           updateAuthor (input: {
             email: "updated@email.com",
@@ -107,7 +107,7 @@ describe('Author tests', async () => {
 	});
 
 	it('should delete author', async () => {
-		const response = await sendTestRequest(
+		const response = await sendLocalQuery(
 			gql(`mutation {
           deleteAuthor (id: "${createSimpleUuid(1)}")
         }

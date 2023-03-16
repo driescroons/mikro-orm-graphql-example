@@ -19,7 +19,7 @@
 		"emitDecoratorMetadata": true,
 		"esModuleInterop": true
 	},
-	"include": ["**/*.ts"],
+	"include": ["**/*.ts", "tests/author.test.ts.k", "tests/initAll.test.ts", "tests/book.test.ts.k"],
 	"exclude": ["node_modules"],
 
 	"ts-node": {

@@ -2,7 +2,7 @@ import gql from 'graphql-tag';
 import { expect } from 'chai';
 import Application from '../src/application';
 import createSimpleUuid from '../src/utils/helpers/createSimpleUuid.helper';
-import { clearDatabase, loadFixtures, sendTestRequest } from './testingUtils';
+import { clearDatabase, loadFixtures, sendLocalQuery } from './testingUtils';
 
 // let request: SuperTest<Test>;
 let application: Application;
@@ -14,7 +14,7 @@ describe('Book tests', async () => {
 		await application.init();
 	});
 	after(async () => {
-		application.httpServer.close();
+		application.stop();
 	});
 
 	beforeEach(async () => {
@@ -23,7 +23,7 @@ describe('Book tests', async () => {
 	});
 
 	it('should get books', async () => {
-		const response = await sendTestRequest(
+		const response = await sendLocalQuery(
 			gql(`query {
           getBooks {
             id title author {
@@ -45,7 +45,7 @@ describe('Book tests', async () => {
 	});
 
 	it('should get book by id', async () => {
-		const response = await sendTestRequest(
+		const response = await sendLocalQuery(
 			gql(`query {
           getBook(id: "${createSimpleUuid(1)}") {
             id title author {
@@ -67,7 +67,7 @@ describe('Book tests', async () => {
 	});
 
 	it('should create book', async () => {
-		const response = await sendTestRequest(
+		const response = await sendLocalQuery(
 			gql(`mutation {
           addBook (
             input: {
@@ -95,7 +95,7 @@ describe('Book tests', async () => {
 	});
 
 	it('should update book', async () => {
-		const response = await sendTestRequest(
+		const response = await sendLocalQuery(
 			gql(`mutation {
           updateBook (input: {
             title: "updated book",
@@ -119,7 +119,7 @@ describe('Book tests', async () => {
 	});
 
 	it('should delete book', async () => {
-		const response = await sendTestRequest(
+		const response = await sendLocalQuery(
 			gql(`mutation {
           deleteBook (id: "${createSimpleUuid(1)}")
         }
