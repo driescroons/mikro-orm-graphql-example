@@ -9,6 +9,7 @@ What is the point about this Proof Of Concept?
 - [MikroORM](https://mikro-orm.io/) Probably the best ORM for Typescript (support identity maps and automatic transactions)
 - [Typescript](https://www.typescriptlang.org/) A somehow decent typed language
 - [Mocha](https://mochajs.org/) An old testing framework (I tried vitest but it doesn't support reflect-metadata)
+- [Ulid](https://github.com/ulid/spec) A robust, distributed, timebased GUID
 - graphql-fields-to-relations - a graphql/databse relationship optimizer
 
 ---

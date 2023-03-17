@@ -1,9 +1,8 @@
 import { Field, ObjectType } from 'type-graphql';
-import TagValidator from '../contracts/validators/tag.validator';
 import { Base } from './base.entity';
 import { Book } from './book.entity';
 
-import { Collection, Entity, EntityManager, ManyToMany, Property } from '@mikro-orm/core';
+import { Collection, Entity, ManyToMany, Property } from '@mikro-orm/core';
 
 @ObjectType()
 @Entity()

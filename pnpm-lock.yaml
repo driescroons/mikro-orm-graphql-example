@@ -14,7 +14,6 @@ specifiers:
   '@types/mocha': 10.0.1
   '@types/node': 18.15.3
   '@types/supertest': 2.0.12
-  '@types/uuid': 9.0.1
   '@typescript-eslint/eslint-plugin': 5.55.0
   '@typescript-eslint/parser': 5.55.0
   body-parser: 1.20.2
@@ -31,6 +30,7 @@ specifiers:
   graphql: 16.6.0
   graphql-subscriptions: 2.0.0
   graphql-tag: 2.12.6
+  id128: 1.6.6
   mocha: 10.2.0
   prettier: 2.8.4
   prettier-plugin-organize-imports: 3.2.2
@@ -41,7 +41,6 @@ specifiers:
   tsconfig-paths: 4.1.2
   type-graphql: next
   typescript: 4.9.5
-  uuid: 9.0.0
 
 dependencies:
   '@apollo/server': 4.5.0_graphql@16.6.0
@@ -57,9 +56,9 @@ dependencies:
   express-async-errors: 3.1.1_express@4.18.2
   graphql: 16.6.0
   graphql-subscriptions: 2.0.0_graphql@16.6.0
+  id128: 1.6.6
   reflect-metadata: 0.1.13
   type-graphql: 2.0.0-beta.1_y4roju44775djskduzf2jupeyy
-  uuid: 9.0.0
 
 devDependencies:
   '@faker-js/faker': 7.6.0
@@ -70,7 +69,6 @@ devDependencies:
   '@types/mocha': 10.0.1
   '@types/node': 18.15.3
   '@types/supertest': 2.0.12
-  '@types/uuid': 9.0.1
   '@typescript-eslint/eslint-plugin': 5.55.0_342y7v4tc7ytrrysmit6jo4wri
   '@typescript-eslint/parser': 5.55.0_vgl77cfdswitgr47lm5swmv43m
   chai: 4.3.7
@@ -857,10 +855,6 @@ packages:
 
   /@types/unist/2.0.6:
     resolution: {integrity: sha512-PBjIUxZHOuj0R15/xuwJYjFi+KZdNFrehocChv4g5hu6aFroHue8m0lBP0POdK2nKzbw0cgV1mws8+V/JAcEkQ==}
-    dev: true
-
-  /@types/uuid/9.0.1:
-    resolution: {integrity: sha512-rFT3ak0/2trgvp4yYZo5iKFEPsET7vKydKF+VRCxlQ9bpheehyAJH89dAkaLEq/j/RZXJIqcgsmPJKUP1Z28HA==}
     dev: true
 
   /@types/validator/13.7.12:
@@ -2033,6 +2027,11 @@ packages:
     engines: {node: '>=0.10.0'}
     dependencies:
       safer-buffer: 2.1.2
+    dev: false
+
+  /id128/1.6.6:
+    resolution: {integrity: sha512-ExSXL9qcyQ7X/AfyO4ouARLnztm7Nmry1rwGi1nbrtSM90tjjqKzeMKqJfkw5bDdDX7XqdXIRzYYkVj5PU28Hg==}
+    engines: {node: '>=v6.9.0'}
     dev: false
 
   /ignore/5.2.1:
