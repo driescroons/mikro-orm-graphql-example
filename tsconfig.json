@@ -19,8 +19,9 @@
 		"emitDecoratorMetadata": true,
 		"esModuleInterop": true
 	},
+
 	"include": ["**/*.ts", "tests/author.test.ts.k", "tests/initAll.test.ts", "tests/book.test.ts.k"],
-	"exclude": ["node_modules"],
+	"exclude": ["node_modules", "tsconfig.json"],
 
 	"ts-node": {
 		"require": ["tsconfig-paths/register"]

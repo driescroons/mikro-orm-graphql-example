@@ -8,13 +8,12 @@
 		"sourceType": "module",
 		"project": "tsconfig.json"
 	},
-	"ignorePatterns": "src/migrations/",
 	"globals": {
 		"NodeJS": true
 	},
 	"env": {
 		"browser": true,
-		"es2017": true,
+		"es2019": true,
 		"node": true
 	},
 	"rules": {

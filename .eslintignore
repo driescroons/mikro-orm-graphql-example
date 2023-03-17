@@ -1,0 +1,11 @@
+.gitignore
+package.json
+*.log
+.eslintcache
+node_modules
+dist
+.git
+pnpm-lock.yaml
+src/migrations/*
+tsconfig.json
+**/*.json
