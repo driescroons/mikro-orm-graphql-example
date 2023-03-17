@@ -5,7 +5,7 @@ import { Author } from '../entities/author.entity';
 import { Book } from '../entities/book.entity';
 import { Publisher } from '../entities/publisher.entity';
 import ormFindOptions from '../strategies/resolveInfoToOrmFindOptions';
-import { MyContext } from '../utils/interfaces/context.interface';
+import { MyContext } from '../utils/interfaces/gql-context.interface';
 
 @Resolver(() => Book)
 export class BookResolver {

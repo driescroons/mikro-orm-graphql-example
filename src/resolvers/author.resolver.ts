@@ -3,7 +3,7 @@ import { Arg, Ctx, Info, Mutation, Query, Resolver } from 'type-graphql';
 import AuthorValidator from '../contracts/validators/Author.validator';
 import { Author } from '../entities/author.entity';
 import ormFindOptions from '../strategies/resolveInfoToOrmFindOptions';
-import { MyContext } from '../utils/interfaces/context.interface';
+import { MyContext } from '../utils/interfaces/gql-context.interface';
 
 @Resolver(() => Author)
 export class AuthorResolver {
