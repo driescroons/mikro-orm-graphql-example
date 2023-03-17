@@ -9,7 +9,8 @@ import { Tag } from '../src/entities/tag.entity';
 import createSimpleUuid from '../src/utils/helpers/createSimpleUuid.helper';
 
 import { faker } from '@faker-js/faker';
-import { Connection, IDatabaseDriver, MikroORM } from '@mikro-orm/core';
+import { Connection, IDatabaseDriver, MikroORM, wrap } from '@mikro-orm/core';
+import { assert } from 'console';
 
 export const clearDatabase = async (orm: MikroORM<IDatabaseDriver<Connection>>): Promise<void> => {
 	await orm.getSchemaGenerator().dropSchema({ wrap: true, dropMigrationsTable: true });
@@ -25,57 +26,87 @@ export const clearDatabase = async (orm: MikroORM<IDatabaseDriver<Connection>>):
 };
 
 export const loadFixtures = async (orm: MikroORM<IDatabaseDriver<Connection>>): Promise<void> => {
+	const em = orm.em;
+
 	try {
 		const tags = await Promise.all(
 			[...Array(5)].map(async (_, tagIndex) => {
-				const tag = new Tag({
-					name: `tag ${tagIndex + 1}`
-				});
+				const tag = new Tag(
+					{
+						name: `tag ${tagIndex + 1}`
+					},
+					em
+				);
 
 				// setting temporary id for test purposes
 				tag.id = createSimpleUuid(tagIndex + 1);
 
-				orm.em.persist(tag);
+				em.persist(tag);
 				return tag;
 			})
 		);
 
 		const publishers = await Promise.all(
 			[...Array(5)].map(async (_, publisherIndex) => {
-				const publisher = new Publisher({
-					name: faker.company.name(),
-					type: PublisherType.GLOBAL
-				});
+				// const publisher = new Publisher({
+				// 	name: faker.company.name(),
+				// 	type: PublisherType.GLOBAL
+				// });
 
-				// setting temporary id for test purposes
+				const publisher = new Publisher(
+					{
+						name: faker.company.name(),
+						type: PublisherType.GLOBAL
+					},
+					em
+				);
+
 				publisher.id = createSimpleUuid(publisherIndex + 1);
 
-				orm.em.persist(publisher);
+				// const publisher = new Publisher();
+				// wrap(publisher).assign(
+				// 	{
+				// 		id: createSimpleUuid(publisherIndex + 1),
+				// 		name: faker.company.name(),
+				// 		type: PublisherType.GLOBAL
+				// 	},
+				// 	{ em }
+				// );
+
+				assert(publisher.name != null, 'publisher.name must NOT be empty!!!');
+
+				em.persist(publisher);
 				return publisher;
 			})
 		);
 
 		const authors = await Promise.all(
 			[...Array(5)].map(async (_, authorIndex) => {
-				const author = new Author({
-					name: `author ${authorIndex + 1}`,
-					email: faker.internet.email(),
-					born: new Date(new Date().setFullYear(1994))
-				});
+				const author = new Author(
+					{
+						name: `author ${authorIndex + 1}`,
+						email: faker.internet.email(),
+						born: new Date(new Date().setFullYear(1994))
+					},
+					em
+				);
 
 				// setting temporary id for test purposes
 				author.id = createSimpleUuid(authorIndex + 1);
 
-				orm.em.persist(author);
+				em.persist(author);
 				return author;
 			})
 		);
 
 		await Promise.all(
 			[...Array(5)].map(async (_, bookIndex) => {
-				const book = new Book({
-					title: `title ${bookIndex + 1}`
-				});
+				const book = new Book(
+					{
+						title: `title ${bookIndex + 1}`
+					},
+					em
+				);
 
 				// setting temporary id for test purposes
 				book.id = createSimpleUuid(bookIndex + 1);
@@ -83,14 +114,15 @@ export const loadFixtures = async (orm: MikroORM<IDatabaseDriver<Connection>>): 
 				book.author = orm.em.getRepository(Author).getReference(authors[bookIndex].id);
 				book.publisher = orm.em.getRepository(Publisher).getReference(publishers[bookIndex].id);
 
-				orm.em.persist(book);
+				em.persist(book);
 				return book;
 			})
 		);
 
-		await orm.em.flush();
+		await em.flush();
 	} catch (error) {
 		console.error('📌 Could not load fixtures', error);
+		throw error;
 	}
 };
 

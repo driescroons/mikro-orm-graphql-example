@@ -3,7 +3,7 @@ import AuthorValidator from '../contracts/validators/author.validator';
 import { Base } from './base.entity';
 import { Book } from './book.entity';
 
-import { Cascade, Collection, Entity, ManyToOne, OneToMany, Property, Unique } from '@mikro-orm/core';
+import { Cascade, Collection, Entity, EntityManager, ManyToOne, OneToMany, Property, Unique } from '@mikro-orm/core';
 
 @ObjectType()
 @Entity()
@@ -32,7 +32,7 @@ export class Author extends Base<Author> {
 	@ManyToOne(() => Book, { nullable: true })
 	public favouriteBook?: Book;
 
-	constructor(body: AuthorValidator) {
-		super(body);
+	constructor(body: AuthorValidator, em: EntityManager) {
+		super(body, em);
 	}
 }

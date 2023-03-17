@@ -4,7 +4,7 @@ import { PublisherValidator } from '../contracts/validators/publisher.validator'
 import { Base } from './base.entity';
 import { Book } from './book.entity';
 
-import { Collection, Entity, Enum, OneToMany, Property } from '@mikro-orm/core';
+import { Collection, Entity, EntityManager, Enum, OneToMany, Property } from '@mikro-orm/core';
 
 @ObjectType()
 @Entity()
@@ -21,7 +21,7 @@ export class Publisher extends Base<Publisher> {
 	@OneToMany(() => Book, (b: Book) => b.publisher)
 	public books = new Collection<Book>(this);
 
-	constructor(body: PublisherValidator) {
-		super(body);
+	constructor(body: PublisherValidator, em: EntityManager) {
+		super(body, em);
 	}
 }

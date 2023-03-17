@@ -14,6 +14,12 @@ export default {
 	},
 	tsNode: process.env.NODE_DEV === 'true' ? true : false,
 	allowGlobalContext: process.env.NODE_DEV === 'true' ? true : false,
+
+	// ensures an error is raised on type mismatch
+	strict: true,
+
+	// tells the engine to validate types before insertion
+	validate: true,
 	user: process.env.POSTGRES_USER || 'root',
 	password: process.env.POSTGRES_PASSWORD || 'root',
 	dbName: process.env.POSTGRES_DB || 'mikro-orm-graphql-data',

@@ -1,7 +1,7 @@
 import { Field, ID, ObjectType } from 'type-graphql';
 import { v4 } from 'uuid';
 
-import { BaseEntity, PrimaryKey, Property } from '@mikro-orm/core';
+import { BaseEntity, EntityManager, PrimaryKey, Property, wrap } from '@mikro-orm/core';
 
 @ObjectType({ isAbstract: true })
 export class Base<T extends { id: string }> extends BaseEntity<T, 'id'> {
@@ -17,8 +17,8 @@ export class Base<T extends { id: string }> extends BaseEntity<T, 'id'> {
 	@Property({ onUpdate: () => new Date() })
 	public updatedAt: Date = new Date();
 
-	constructor(body = {}) {
+	constructor(body: object, em: EntityManager) {
 		super();
-		this.assign(body);
+		wrap(this).assign(body, { em });
 	}
 }

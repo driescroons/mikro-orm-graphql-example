@@ -5,7 +5,7 @@ import { Base } from './base.entity';
 import { Publisher } from './publisher.entity';
 import { Tag } from './tag.entity';
 
-import { Cascade, Collection, Entity, ManyToMany, ManyToOne, Property } from '@mikro-orm/core';
+import { Cascade, Collection, Entity, EntityManager, ManyToMany, ManyToOne, Property } from '@mikro-orm/core';
 
 @ObjectType()
 @Entity()
@@ -29,7 +29,7 @@ export class Book extends Base<Book> {
 	@ManyToMany(() => Tag)
 	public tags = new Collection<Tag>(this);
 
-	constructor(body: BookValidator) {
-		super(body);
+	constructor(body: BookValidator, em: EntityManager) {
+		super(body, em);
 	}
 }
