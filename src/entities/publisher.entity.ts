@@ -21,7 +21,7 @@ export class Publisher extends Base<Publisher> {
 	@OneToMany(() => Book, (b: Book) => b.publisher)
 	public books = new Collection<Book>(this);
 
-	constructor(body: PublisherValidator, em: EntityManager) {
-		super(body, em);
+	constructor() {
+		super();
 	}
 }

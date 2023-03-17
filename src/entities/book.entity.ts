@@ -29,7 +29,7 @@ export class Book extends Base<Book> {
 	@ManyToMany(() => Tag)
 	public tags = new Collection<Tag>(this);
 
-	constructor(body: BookValidator, em: EntityManager) {
-		super(body, em);
+	constructor() {
+		super();
 	}
 }

@@ -32,7 +32,7 @@ export class Author extends Base<Author> {
 	@ManyToOne(() => Book, { nullable: true })
 	public favouriteBook?: Book;
 
-	constructor(body: AuthorValidator, em: EntityManager) {
-		super(body, em);
+	constructor() {
+		super();
 	}
 }

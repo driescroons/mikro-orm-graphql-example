@@ -31,13 +31,13 @@ export const loadFixtures = async (orm: MikroORM<IDatabaseDriver<Connection>>): 
 	try {
 		const tags = await Promise.all(
 			[...Array(5)].map(async (_, tagIndex) => {
-				const tag = new Tag(
+				const tag = new Tag();
+				wrap(tag).assign(
 					{
 						name: `tag ${tagIndex + 1}`
 					},
-					em
+					{ em }
 				);
-
 				// setting temporary id for test purposes
 				tag.id = createSimpleUuid(tagIndex + 1);
 
@@ -53,25 +53,25 @@ export const loadFixtures = async (orm: MikroORM<IDatabaseDriver<Connection>>): 
 				// 	type: PublisherType.GLOBAL
 				// });
 
-				const publisher = new Publisher(
-					{
-						name: faker.company.name(),
-						type: PublisherType.GLOBAL
-					},
-					em
-				);
-
-				publisher.id = createSimpleUuid(publisherIndex + 1);
-
-				// const publisher = new Publisher();
-				// wrap(publisher).assign(
+				// const publisher = new Publisher(
 				// 	{
-				// 		id: createSimpleUuid(publisherIndex + 1),
 				// 		name: faker.company.name(),
 				// 		type: PublisherType.GLOBAL
 				// 	},
-				// 	{ em }
+				// 	em
 				// );
+
+				const publisher = new Publisher();
+				wrap(publisher).assign(
+					{
+						id: createSimpleUuid(publisherIndex + 1),
+						name: faker.company.name(),
+						type: PublisherType.GLOBAL
+					},
+					{ em }
+				);
+
+				// publisher.id = createSimpleUuid(publisherIndex + 1);
 
 				assert(publisher.name != null, 'publisher.name must NOT be empty!!!');
 
@@ -82,13 +82,14 @@ export const loadFixtures = async (orm: MikroORM<IDatabaseDriver<Connection>>): 
 
 		const authors = await Promise.all(
 			[...Array(5)].map(async (_, authorIndex) => {
-				const author = new Author(
+				const author = new Author();
+				wrap(author).assign(
 					{
 						name: `author ${authorIndex + 1}`,
 						email: faker.internet.email(),
 						born: new Date(new Date().setFullYear(1994))
 					},
-					em
+					{ em }
 				);
 
 				// setting temporary id for test purposes
@@ -101,11 +102,12 @@ export const loadFixtures = async (orm: MikroORM<IDatabaseDriver<Connection>>): 
 
 		await Promise.all(
 			[...Array(5)].map(async (_, bookIndex) => {
-				const book = new Book(
+				const book = new Book();
+				wrap(book).assign(
 					{
 						title: `title ${bookIndex + 1}`
 					},
-					em
+					{ em }
 				);
 
 				// setting temporary id for test purposes

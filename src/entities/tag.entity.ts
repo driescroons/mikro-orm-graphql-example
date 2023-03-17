@@ -16,7 +16,7 @@ export class Tag extends Base<Tag> {
 	@ManyToMany(() => Book, (b: Book) => b.tags)
 	public books = new Collection<Book>(this);
 
-	constructor(body: TagValidator, em: EntityManager) {
-		super(body, em);
+	constructor() {
+		super();
 	}
 }
