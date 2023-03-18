@@ -15,7 +15,8 @@
 		"lint-check-format": "prettier --check --cache --plugin-search-dir=. .",
 		"format": "prettier --write --cache --plugin-search-dir=. .",
 		"test": "pnpx cross-env NODE_DEV=true NODE_ENV=test ./node_modules/.bin/ts-mocha ./tests/*.test.ts --package package.json",
-		"test:loadFixtures": "vitest initAll"
+		"test:loadFixtures": "vitest initAll",
+		"mikro-orm": "./node_modules/.bin/mikro-orm"
 	},
 	"dependencies": {
 		"@apollo/server": "4.5.0",

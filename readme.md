@@ -2,26 +2,14 @@
 
 One model to rule them all.
 
-This project is a proof of concept I
-
-
-
-
-
-
-
-Any mutation of state generates a message on the console
-
-
-
-
-
 ## 🏷️ Features
 
 * Automatic GraphQL API generation
 * Automatic DB Schema generation
 * Automatic event generation on mutations
 * Database up/down migrations
+* Service auto-reload on source code change
+* Support for many other database targets - MongoDB, MySQL, SQLlite..etc
 
 
 
