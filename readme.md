@@ -2,7 +2,7 @@
 
 _One model to rule them all_
 
-![](/Users/orefalo/GitRepositories/wip/mikroorm-typegraphql-example/screenshot.png)
+![Screenshot](screenshot.png)
 
 ## 🏷️ Features
 
