@@ -1,12 +1,13 @@
 import { DocumentNode, print } from 'graphql';
 import request from 'supertest';
-import Application from '../src/application';
+
 import { PublisherType } from '../src/contracts/enums/publisherType.enum';
 import { Author } from '../src/entities/author.entity';
 import { Book } from '../src/entities/book.entity';
 import { Publisher } from '../src/entities/publisher.entity';
 import { Tag } from '../src/entities/tag.entity';
-import createSimpleUuid from './createSimpleUuid.helper';
+import createDummyUuid from './createDummyUuid.helper';
+import type { Server } from 'http';
 
 import { faker } from '@faker-js/faker';
 import { Connection, IDatabaseDriver, MikroORM, wrap } from '@mikro-orm/core';
@@ -34,12 +35,12 @@ export const loadFixtures = async (orm: MikroORM<IDatabaseDriver<Connection>>): 
 				const tag = new Tag();
 				wrap(tag).assign(
 					{
+						// setting temporary id for test purposes
+						id: createDummyUuid(tagIndex + 1),
 						name: `tag ${tagIndex + 1}`
 					},
 					{ em }
 				);
-				// setting temporary id for test purposes
-				tag.id = createSimpleUuid(tagIndex + 1);
 
 				em.persist(tag);
 				return tag;
@@ -48,30 +49,15 @@ export const loadFixtures = async (orm: MikroORM<IDatabaseDriver<Connection>>): 
 
 		const publishers = await Promise.all(
 			[...Array(5)].map(async (_, publisherIndex) => {
-				// const publisher = new Publisher({
-				// 	name: faker.company.name(),
-				// 	type: PublisherType.GLOBAL
-				// });
-
-				// const publisher = new Publisher(
-				// 	{
-				// 		name: faker.company.name(),
-				// 		type: PublisherType.GLOBAL
-				// 	},
-				// 	em
-				// );
-
 				const publisher = new Publisher();
 				wrap(publisher).assign(
 					{
-						id: createSimpleUuid(publisherIndex + 1),
+						id: createDummyUuid(publisherIndex + 1),
 						name: faker.company.name(),
 						type: PublisherType.GLOBAL
 					},
 					{ em }
 				);
-
-				// publisher.id = createSimpleUuid(publisherIndex + 1);
 
 				assert(publisher.name != null, 'publisher.name must NOT be empty!!!');
 
@@ -85,15 +71,14 @@ export const loadFixtures = async (orm: MikroORM<IDatabaseDriver<Connection>>): 
 				const author = new Author();
 				wrap(author).assign(
 					{
+						// setting temporary id for test purposes
+						id: createDummyUuid(authorIndex + 1),
 						name: `author ${authorIndex + 1}`,
 						email: faker.internet.email(),
 						born: new Date(new Date().setFullYear(1994))
 					},
 					{ em }
 				);
-
-				// setting temporary id for test purposes
-				author.id = createSimpleUuid(authorIndex + 1);
 
 				em.persist(author);
 				return author;
@@ -105,16 +90,16 @@ export const loadFixtures = async (orm: MikroORM<IDatabaseDriver<Connection>>): 
 				const book = new Book();
 				wrap(book).assign(
 					{
+						// setting temporary id for test purposes
+						id: createDummyUuid(bookIndex + 1),
+						author: orm.em.getRepository(Author).getReference(authors[bookIndex].id),
+						publisher: orm.em.getRepository(Publisher).getReference(publishers[bookIndex].id),
 						title: `title ${bookIndex + 1}`
 					},
 					{ em }
 				);
 
-				// setting temporary id for test purposes
-				book.id = createSimpleUuid(bookIndex + 1);
 				book.tags.add(orm.em.getRepository(Tag).getReference(tags[bookIndex].id));
-				book.author = orm.em.getRepository(Author).getReference(authors[bookIndex].id);
-				book.publisher = orm.em.getRepository(Publisher).getReference(publishers[bookIndex].id);
 
 				em.persist(book);
 				return book;
@@ -128,19 +113,12 @@ export const loadFixtures = async (orm: MikroORM<IDatabaseDriver<Connection>>): 
 	}
 };
 
-let cachedServer: any;
-
-const createServer = async () => {
-	const app = new Application();
-	await app.init();
-	return app.httpServer;
-};
-
 export function resetDB() {
 	//
 }
 
 export const sendLocalQuery = async (
+	server: Server,
 	query: DocumentNode,
 	{
 		variables = {},
@@ -150,8 +128,6 @@ export const sendLocalQuery = async (
 		headers?: { [key: string]: string };
 	} = {}
 ): Promise<any> => {
-	const server = cachedServer ?? (await createServer());
-	cachedServer = server;
 	const requestBuilder = request(server).post('/graphql').expect(200);
 
 	Object.entries(headers).forEach(([key, value]) => {

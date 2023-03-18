@@ -33,8 +33,8 @@ export class BookResolver {
 		@Ctx() ctx: MyContext,
 		@Info() info: GraphQLResolveInfo
 	): Promise<Book> {
-		const book = new Book(input);
-
+		const book = new Book();
+		book.assign(input);
 		book.author = await ctx.em
 			.getRepository(Author)
 			.findOneOrFail({ id: authorId }, ormFindOptions(info, { root: 'author' }));

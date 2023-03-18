@@ -29,7 +29,8 @@ export class AuthorResolver {
 		@Arg('input', () => AuthorValidator) input: AuthorValidator,
 		@Ctx() ctx: MyContext
 	): Promise<Author> {
-		const author = new Author(input);
+		const author = new Author();
+		author.assign(input);
 		await ctx.em.persist(author).flush();
 		return author;
 	}

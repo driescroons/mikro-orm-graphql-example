@@ -1,12 +1,11 @@
 import gql from 'graphql-tag';
 import { expect } from 'chai';
 import Application from '../src/application';
-import createSimpleUuid from '../src/utils/helpers/createSimpleUuid.helper';
-import { clearDatabase, loadFixtures, sendLocalQuery } from './testingUtils';
 
-// let request: SuperTest<Test>;
+import { clearDatabase, loadFixtures, sendLocalQuery } from './testingUtils';
+import createDummyUuid from './createDummyUuid.helper';
+
 let application: Application;
-// let em: EntityManager<IDatabaseDriver<Connection>>;
 
 describe('Book tests', async () => {
 	before(async () => {
@@ -14,7 +13,7 @@ describe('Book tests', async () => {
 		await application.init();
 	});
 	after(async () => {
-		application.stop();
+		await application.stop();
 	});
 
 	beforeEach(async () => {
@@ -24,6 +23,7 @@ describe('Book tests', async () => {
 
 	it('should get books', async () => {
 		const response = await sendLocalQuery(
+			application.httpServer,
 			gql(`query {
           getBooks {
             id title author {
@@ -41,13 +41,14 @@ describe('Book tests', async () => {
         }
         `)
 		);
-		expect(response.body.data.getBooks).to.be.a('array');
+		expect(response.data.getBooks).to.be.a('array');
 	});
 
 	it('should get book by id', async () => {
 		const response = await sendLocalQuery(
+			application.httpServer,
 			gql(`query {
-          getBook(id: "${createSimpleUuid(1)}") {
+          getBook(id: "${createDummyUuid(1)}") {
             id title author {
               id email
             }
@@ -63,18 +64,19 @@ describe('Book tests', async () => {
         }
         `)
 		);
-		expect(response.body.data.getBook).to.be.a('object');
+		expect(response.data.getBook).to.be.a('object');
 	});
 
 	it('should create book', async () => {
 		const response = await sendLocalQuery(
+			application.httpServer,
 			gql(`mutation {
           addBook (
             input: {
               title: "new Book",
             },
-            authorId: "${createSimpleUuid(1)}"
-            publisherId: "${createSimpleUuid(1)}"
+            authorId: "${createDummyUuid(1)}"
+            publisherId: "${createDummyUuid(1)}"
           ) {
             id title author {
               id email
@@ -91,15 +93,16 @@ describe('Book tests', async () => {
         }
         `)
 		);
-		expect(response.body.data.addBook).to.be.a('object');
+		expect(response.data.addBook).to.be.a('object');
 	});
 
 	it('should update book', async () => {
 		const response = await sendLocalQuery(
+			application.httpServer,
 			gql(`mutation {
           updateBook (input: {
             title: "updated book",
-          }, id: "${createSimpleUuid(1)}") {
+          }, id: "${createDummyUuid(1)}") {
             id title author {
               id email
             }
@@ -115,16 +118,17 @@ describe('Book tests', async () => {
         }
         `)
 		);
-		expect(response.body.data.updateBook).to.be.a('object');
+		expect(response.data.updateBook).to.be.a('object');
 	});
 
 	it('should delete book', async () => {
 		const response = await sendLocalQuery(
+			application.httpServer,
 			gql(`mutation {
-          deleteBook (id: "${createSimpleUuid(1)}")
+          deleteBook (id: "${createDummyUuid(1)}")
         }
         `)
 		);
-		expect(response.body.data.deleteBook).to.be.true;
+		expect(response.data.deleteBook).to.be.true;
 	});
 });
