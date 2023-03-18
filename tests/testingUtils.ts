@@ -6,7 +6,7 @@ import { Author } from '../src/entities/author.entity';
 import { Book } from '../src/entities/book.entity';
 import { Publisher } from '../src/entities/publisher.entity';
 import { Tag } from '../src/entities/tag.entity';
-import createSimpleUuid from '../src/utils/helpers/createSimpleUuid.helper';
+import createSimpleUuid from './createSimpleUuid.helper';
 
 import { faker } from '@faker-js/faker';
 import { Connection, IDatabaseDriver, MikroORM, wrap } from '@mikro-orm/core';
