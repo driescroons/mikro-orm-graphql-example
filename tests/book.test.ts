@@ -1,9 +1,9 @@
-import gql from 'graphql-tag';
 import { expect } from 'chai';
+import gql from 'graphql-tag';
 import Application from '../src/application';
 
-import { clearDatabase, loadFixtures, sendLocalQuery } from './testingUtils';
 import createDummyUuid from './createDummyUuid.helper';
+import { clearDatabase, loadFixtures, sendLocalQuery } from './testingUtils';
 
 let application: Application;
 

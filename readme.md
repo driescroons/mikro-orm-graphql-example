@@ -1,17 +1,17 @@
 # mikro-orm-graphql-example
 
-One model to rule them all.
+_One model to rule them all_
+
+![](/Users/orefalo/GitRepositories/wip/mikroorm-typegraphql-example/screenshot.png)
 
 ## 🏷️ Features
 
-* Automatic GraphQL API generation
-* Automatic DB Schema generation
-* Automatic event generation on mutations
-* Database up/down migrations
-* Service auto-reload on source code change
-* Support for many other database targets - MongoDB, MySQL, SQLlite..etc
-
-
+- Automatic GraphQL API generation
+- Automatic DB Schema generation
+- Automatic event generation on mutations
+- Database up/down migrations
+- Service auto-reload on source code change
+- Support for many other database targets - MongoDB, MySQL, SQLlite..etc
 
 ## 📦 TechStack
 
@@ -24,8 +24,6 @@ One model to rule them all.
 - [Apollo Server](https://www.apollographql.com/) - An good looking GrapQL server - yet a resource hog
 - graphql-fields-to-relations - a graphql/database relationship optimizer (now bundled in the repo)
 
-
-
 ## ✨ Installation & Usage
 
 The application requires `nodejs` and `docker` installed on your computer.
@@ -36,15 +34,12 @@ The application requires `nodejs` and `docker` installed on your computer.
 4. Start the graphQL server via `pnpm start` (for prod) or `pnpm dev`(for dev)
 5. Open a browser to [localhost:4000/graphql](http://localhost:4000/graphql)
 
-
-
 ## ⚡️ Testing
 
-Unit tests are fully implemented and run locally
+Unit tests and code coverage are fully implemented
 
 1. `pnpm test`
-
-
+2. `pnpm coverage`
 
 ## 🗂️ Migrations
 
@@ -58,9 +53,6 @@ pnpm mikro-orm migration:up
 pnpm mikro-orm migration:create
 ```
 
-
-
 ## 👤 Author
 
 Olivier Refalo
-

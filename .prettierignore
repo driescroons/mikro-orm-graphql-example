@@ -3,3 +3,5 @@ node_modules
 dist
 *.log
 pnpm-lock.yaml
+.nyc_output
+coverage

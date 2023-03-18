@@ -9,3 +9,5 @@ pnpm-lock.yaml
 src/migrations/*
 tsconfig.json
 **/*.json
+.nyc_output
+coverage

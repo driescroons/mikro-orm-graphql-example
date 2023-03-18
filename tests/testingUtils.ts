@@ -1,13 +1,13 @@
 import { DocumentNode, print } from 'graphql';
 import request from 'supertest';
 
+import type { Server } from 'http';
 import { PublisherType } from '../src/contracts/enums/publisherType.enum';
 import { Author } from '../src/entities/author.entity';
 import { Book } from '../src/entities/book.entity';
 import { Publisher } from '../src/entities/publisher.entity';
 import { Tag } from '../src/entities/tag.entity';
 import createDummyUuid from './createDummyUuid.helper';
-import type { Server } from 'http';
 
 import { faker } from '@faker-js/faker';
 import { Connection, IDatabaseDriver, MikroORM, wrap } from '@mikro-orm/core';
